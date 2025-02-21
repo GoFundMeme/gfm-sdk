@@ -35,11 +35,6 @@ The **GoFundMeme SDK** is an all-in-one toolkit designed to simplify and streaml
 📢 [Join the Telegram Chat](https://t.me/gofundmeme)  
 📢 [Follow us on X](https://x.com/GoFundMemes)  
 
-
-
-
-Here’s the **Installation & Initialization** section for your **README.md** with proper formatting, enhanced clarity, and styling. Let me know if you’d like any modifications! 🚀  
-
 ---
 
 ## ⚡ Installation  
