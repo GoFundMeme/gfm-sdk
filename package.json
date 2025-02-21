@@ -1,13 +1,24 @@
 {
   "name": "gfm-sdk",
   "description": "GFM SDK",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "prepublishOnly": "rm -rf dist && npm run build",
     "serve": "rm -rf dist && tsc && node dist/src/index.js"
+  },
+  "dependencies": {
+    "@coral-xyz/anchor": "0.29.0",
+    "@identity.com/solana-gateway-ts": "^0.12.0",
+    "@orca-so/common-sdk": "^0.6.10",
+    "@orca-so/whirlpools-sdk": "^0.13.15",
+    "@raydium-io/raydium-sdk-v2": "^0.1.115-alpha",
+    "@solana/web3.js": "^1.98.0",
+    "axios": "^1.7.9",
+    "decimal.js": "^10.5.0",
+    "moment": "^2.30.1"
   },
   "devDependencies": {
     "@types/node": "^22.13.4",
