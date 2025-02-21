@@ -50,12 +50,16 @@ To get started, install the **GoFundMeme SDK** along with **Solana’s Web3.js**
 ```sh
 npm install @gofundmeme/sdk
 npm install @solana/web3.js
+npm install moment
+npm install decimal.js
 ```
 
 ### Using `yarn`  
 ```sh
 yarn add @gofundmeme/sdk
 yarn add @solana/web3.js
+yarn add moment
+yarn add decimal.js
 ```
 
 ---

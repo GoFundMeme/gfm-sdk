@@ -1,13 +1,13 @@
 {
   "name": "@gofundmeme/sdk",
   "description": "GFM SDK",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "prepublishOnly": "npm run build",
-    "serve": "rm -rf dist && tsc && node dist/src/index.js"
+    "serve": "rm -rf dist && tsc && node dist/index.js"
   },
   "dependencies": {
     "@coral-xyz/anchor": "0.29.0",
