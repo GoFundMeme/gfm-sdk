@@ -1,12 +1,12 @@
 {
-  "name": "gfm-sdk",
+  "name": "@gofundmeme/sdk",
   "description": "GFM SDK",
   "version": "0.0.2",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "prepublishOnly": "rm -rf dist && npm run build",
+    "prepublishOnly": "npm run build",
     "serve": "rm -rf dist && tsc && node dist/src/index.js"
   },
   "dependencies": {
