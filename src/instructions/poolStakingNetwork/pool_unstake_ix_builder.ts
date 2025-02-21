@@ -18,7 +18,7 @@ import {
   getPoolStakerAccount,
 } from "../../utils";
 
-export const buildPoolStakingTransaction = async ({
+export const buildPoolUnstakingTransaction = async ({
   gfmProgram,
   pool,
   staker,

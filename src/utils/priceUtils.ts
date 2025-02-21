@@ -1,9 +1,7 @@
-import { AnchorProvider, Program } from "@coral-xyz/anchor";
-import { LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
+import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import Decimal from "decimal.js";
 import BN from "bn.js";
-import { adjustDecimals, getPoolPDA } from "../utils";
-import { Gofundmeme } from "../IDL/types/gofundmeme";
+import { adjustDecimals } from "../utils";
 import { BondingCurvePool } from "../types";
 
 export const calculateArea = (

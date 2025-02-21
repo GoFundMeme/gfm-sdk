@@ -1,3 +1,4 @@
+export * from "./utils"
 import { Program } from "@coral-xyz/anchor";
 import { PublicKey } from "@solana/web3.js";
 import { Gofundmeme } from "../../../IDL/types/gofundmeme";
@@ -209,8 +210,8 @@ export const buildBondingCurvePoolActions = async ({
 
   return {
     poolData: pool,
+    refreshPoolData,
     actions: {
-      refreshPoolData,
       swap: {
         getQuoteForAmount: createQuoteForAmountUtil,
         buy: createBuyTransaction,

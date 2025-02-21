@@ -1,3 +1,4 @@
+export * from "./utils"
 import { Program } from "@coral-xyz/anchor";
 import { PublicKey } from "@solana/web3.js";
 import { Gofundmeme } from "../../../IDL/types/gofundmeme";
@@ -160,8 +161,8 @@ export const buildFairLaunchPoolActions = async ({
 
   return {
     poolData: pool,
+    refreshPoolData,
     actions: {
-      refreshPoolData,
       fund: createFundTransaction,
       defund: createDefundTransaction,
       claimPresale: createlaimPresaleTransaction,

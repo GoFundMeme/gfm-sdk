@@ -1,7 +1,7 @@
-import { Connection, PublicKey } from "@solana/web3.js";
-import { initGoFundMemeSDK } from "./gfmSdk";
-
-(async () => {
-  const connection = new Connection("https://api.mainnet-beta.solana.com");
-  const gfmSDK = await initGoFundMemeSDK({ connection });
-})();
+export * from "./IDL";
+export * from "./accounts";
+export * from "./constants";
+export * from "./gfmSdk";
+export * from "./instructions";
+export * from "./types";
+export * from "./utils";
