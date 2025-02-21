@@ -80,15 +80,6 @@ const connection = new Connection("https://api.mainnet-beta.solana.com");
 Now that your SDK is initialized, you’re ready to interact with the **GoFundMeme Protocol**! Check out the next sections for detailed guides on **Fair Launch**, **Bonding Curves**, **Staking**, and more. 🚀  
 
 
-
-
----
-
-
-
-
-Here's the **Fair Launch Raises** section for your **README.md**, with well-structured explanations, response examples, and clear documentation.
-
 ---
 
 # 🚀 Fair Launch Raises  
