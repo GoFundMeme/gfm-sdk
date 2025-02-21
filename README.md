@@ -3,7 +3,7 @@
 [![Website](https://img.shields.io/badge/Website-GoFundMeme.io-blue?style=for-the-badge)](https://www.gofundmeme.io)  
 [![X (Twitter)](https://img.shields.io/badge/X-@GoFundMemes-black?style=for-the-badge)](https://x.com/GoFundMemes)  
 [![Telegram](https://img.shields.io/badge/Telegram-Join%20Chat-blue?style=for-the-badge)](https://t.me/gofundmeme)  
-[![NPM](https://img.shields.io/npm/v/gfm-sdk?color=red&label=NPM&style=for-the-badge)](https://www.npmjs.com/package/gfm-sdk)  
+[![NPM](https://img.shields.io/npm/v/@gofundmeme/sdk?color=red&label=NPM&style=for-the-badge)](https://www.npmjs.com/package/@gofundmeme/sdk)  
 
 
 
