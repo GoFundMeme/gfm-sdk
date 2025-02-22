@@ -1,5 +1,6 @@
 import { BN, Program } from "@coral-xyz/anchor";
 import {
+  ComputeBudgetProgram,
   PublicKey,
   SystemProgram,
   SYSVAR_CLOCK_PUBKEY,
@@ -53,7 +54,11 @@ export const buildStakingNetworkUnstakeTransaction = async ({
   const receiverAccount = await gfmProgram.provider.connection.getAccountInfo(
     stakerTokenAccount
   );
-  let instructions: TransactionInstruction[] = [];
+  let instructions: TransactionInstruction[] = [
+    ComputeBudgetProgram.setComputeUnitLimit({
+      units: 1_000_000,
+    }),
+  ];
   if (!receiverAccount) {
     instructions.push(
       createAssociatedTokenAccountInstruction(

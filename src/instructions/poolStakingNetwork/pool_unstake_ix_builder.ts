@@ -1,5 +1,5 @@
 import { BN, Program } from "@coral-xyz/anchor";
-import { PublicKey } from "@solana/web3.js";
+import { ComputeBudgetProgram, PublicKey } from "@solana/web3.js";
 import {
   getAssociatedTokenAddressSync,
   TOKEN_PROGRAM_ID,
@@ -76,5 +76,10 @@ export const buildPoolUnstakingTransaction = async ({
       clock: CLOCK_PROGRAM_ID,
     })
     .transaction();
+  transaction.add(
+    ComputeBudgetProgram.setComputeUnitLimit({
+      units: 1_000_000,
+    })
+  );
   return transaction;
 };

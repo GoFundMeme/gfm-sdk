@@ -1,8 +1,5 @@
-import {
-  BN,
-  Program,
-} from "@coral-xyz/anchor";
-import { PublicKey } from "@solana/web3.js";
+import { BN, Program } from "@coral-xyz/anchor";
+import { ComputeBudgetProgram, PublicKey } from "@solana/web3.js";
 
 import {
   getAssociatedTokenAddressSync,
@@ -136,7 +133,6 @@ export const syncRaydiumBondingCurvePoolStakingNetwork = async ({
       positionInfo: { unclaimedFee },
     } = res.data;
     amount = new BN(`${unclaimedFee.lp}`.replace(".", ""));
-    console.log(unclaimedFee);
   } catch (error) {
     console.log(error);
   }
@@ -184,5 +180,10 @@ export const syncRaydiumBondingCurvePoolStakingNetwork = async ({
     })
     .remainingAccounts(remainingAccounts)
     .transaction();
+  transaction.add(
+    ComputeBudgetProgram.setComputeUnitLimit({
+      units: 1_000_000,
+    })
+  );
   return transaction;
 };

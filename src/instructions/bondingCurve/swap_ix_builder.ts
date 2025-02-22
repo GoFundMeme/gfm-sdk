@@ -1,5 +1,10 @@
 import { Program } from "@coral-xyz/anchor";
-import { PublicKey, SystemProgram, SYSVAR_RENT_PUBKEY } from "@solana/web3.js";
+import {
+  ComputeBudgetProgram,
+  PublicKey,
+  SystemProgram,
+  SYSVAR_RENT_PUBKEY,
+} from "@solana/web3.js";
 import { Gofundmeme } from "../../IDL/types/gofundmeme";
 import { BondingCurvePool } from "../../types";
 import {
@@ -62,7 +67,7 @@ export const buildSwapTransaction = async ({
     gfmProgram.programId,
     gfmMintAddress
   );
-  return await gfmProgram.methods
+  const transaction = await gfmProgram.methods
     .swap({
       direction: quote.direction === "buy" ? { buy: {} } : { sell: {} },
       amountIn: quote.amountIn,
@@ -71,7 +76,7 @@ export const buildSwapTransaction = async ({
     })
     .accounts({
       user: funder,
-      tokenMint: pool.tokenAMint,
+      tokenMint: pool.tokenBMint,
       pool: poolPDA,
       userTokenAccount,
       treasuryTokenVault,
@@ -87,4 +92,10 @@ export const buildSwapTransaction = async ({
       userPoolsLookupManager,
     })
     .transaction();
+  transaction.add(
+    ComputeBudgetProgram.setComputeUnitLimit({
+      units: 1_000_000,
+    })
+  );
+  return transaction;
 };

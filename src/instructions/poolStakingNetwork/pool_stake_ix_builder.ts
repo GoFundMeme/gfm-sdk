@@ -1,5 +1,5 @@
 import { BN, Program } from "@coral-xyz/anchor";
-import { PublicKey } from "@solana/web3.js";
+import { ComputeBudgetProgram, PublicKey } from "@solana/web3.js";
 import {
   getAssociatedTokenAddressSync,
   TOKEN_PROGRAM_ID,
@@ -65,7 +65,9 @@ export const buildPoolStakingTransaction = async ({
   );
 
   const mint = await getMint(gfmProgram.provider.connection, tokenBMint);
-  const scaledAmount = new BN(amountUI).mul(new BN(Math.pow(10, mint.decimals)));
+  const scaledAmount = new BN(amountUI).mul(
+    new BN(Math.pow(10, mint.decimals))
+  );
 
   const transaction = await gfmProgram.methods
     .poolStake(scaledAmount)
@@ -86,5 +88,10 @@ export const buildPoolStakingTransaction = async ({
       clock: CLOCK_PROGRAM_ID,
     })
     .transaction();
+  transaction.add(
+    ComputeBudgetProgram.setComputeUnitLimit({
+      units: 1_000_000,
+    })
+  );
   return transaction;
 };

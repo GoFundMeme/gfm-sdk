@@ -1,5 +1,6 @@
 import { Program } from "@coral-xyz/anchor";
 import {
+  ComputeBudgetProgram,
   PublicKey,
   SystemProgram,
   Transaction,
@@ -29,7 +30,11 @@ export const buildClaimRewardsTransaction = async ({
 }) => {
   const poolPDA = getPoolPDA(gfmProgram.programId, mintA, mintB);
 
-  const instructions: TransactionInstruction[] = [];
+  const instructions: TransactionInstruction[] = [
+    ComputeBudgetProgram.setComputeUnitLimit({
+      units: 1_000_000,
+    })
+  ];
 
   const addTokenAccountInstruction = async (
     mintKey: PublicKey,

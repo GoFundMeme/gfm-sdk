@@ -1,6 +1,7 @@
 import { Program } from "@coral-xyz/anchor";
 import {
   AccountMeta,
+  ComputeBudgetProgram,
   PublicKey,
   SystemProgram,
   Transaction,
@@ -65,7 +66,11 @@ export const buildHarvestOrcaPresaleTransaction = async ({
   const positionData = await fetcher.getPosition(positionPda.publicKey);
   if (!positionData) throw new Error("Failed to get position data");
 
-  const instructions: TransactionInstruction[] = [];
+  const instructions: TransactionInstruction[] = [
+    ComputeBudgetProgram.setComputeUnitLimit({
+      units: 1_000_000,
+    }),
+  ];
 
   for (const mintKey of [mintPublicKey, SOL_PUBLIC_KEY]) {
     for (const publick of [cranker, poolPDA]) {

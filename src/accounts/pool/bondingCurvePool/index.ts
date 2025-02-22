@@ -1,4 +1,4 @@
-export * from "./utils"
+export * from "./utils";
 import { Program } from "@coral-xyz/anchor";
 import { PublicKey } from "@solana/web3.js";
 import { Gofundmeme } from "../../../IDL/types/gofundmeme";
@@ -9,7 +9,7 @@ import { Raydium } from "@raydium-io/raydium-sdk-v2";
 import { getQuoteForAmount } from "../../../utils/priceUtils";
 import Decimal from "decimal.js";
 import { buildSwapTransaction } from "../../../instructions/bondingCurve/swap_ix_builder";
-import { OrcaContext } from "../../../utils";
+import { getDecimals, OrcaContext } from "../../../utils";
 import { getOrcaLpStateSummary } from "../fairLaunchPool/utils";
 import { getRaydiumLpStateSummary } from "./utils";
 import { syncRaydiumBondingCurvePoolStakingNetwork } from "../../../instructions/poolStakingNetwork/sync_bc_pool_staking_raydium_ix_builder";
@@ -71,6 +71,15 @@ export const buildBondingCurvePoolActions = async ({
     pool = await gfmProgram.account.bondingCurvePool.fetch(poolPDA);
   };
 
+  const decinalA = await getDecimals({
+    connection: gfmProgram.provider.connection,
+    mint: pool.tokenAMint,
+  });
+  const decinalB = await getDecimals({
+    connection: gfmProgram.provider.connection,
+    mint: pool.tokenBMint,
+  });
+
   const createQuoteForAmountUtil = (payload: {
     amountInUI: Decimal;
     slippage: number;
@@ -79,6 +88,7 @@ export const buildBondingCurvePoolActions = async ({
     return getQuoteForAmount({
       pool,
       ...payload,
+      decimals: payload.direction === "buy" ? decinalA : decinalB,
     });
   };
   const createBuyTransaction = async ({
@@ -90,19 +100,20 @@ export const buildBondingCurvePoolActions = async ({
     slippage: number;
     funder: PublicKey;
   }) => {
-    const qoute = await getQuoteForAmount({
+    const quote = await getQuoteForAmount({
       pool,
       direction: "buy",
       amountInUI,
       slippage,
+      decimals: decinalA,
     });
     return {
-      qoute,
+      quote,
       transaction: await buildSwapTransaction({
         gfmProgram,
         funder,
         pool,
-        quote: qoute.quote,
+        quote: quote.quote,
       }),
     };
   };
@@ -115,19 +126,20 @@ export const buildBondingCurvePoolActions = async ({
     slippage: number;
     funder: PublicKey;
   }) => {
-    const qoute = await getQuoteForAmount({
+    const quote = await getQuoteForAmount({
       pool,
       direction: "sell",
       amountInUI,
       slippage,
+      decimals: decinalB,
     });
     return {
-      qoute,
+      quote,
       transaction: await buildSwapTransaction({
         gfmProgram,
         funder,
         pool,
-        quote: qoute.quote,
+        quote: quote.quote,
       }),
     };
   };

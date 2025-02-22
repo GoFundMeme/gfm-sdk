@@ -1,5 +1,9 @@
 import { Program } from "@coral-xyz/anchor";
-import { PublicKey, SYSVAR_CLOCK_PUBKEY } from "@solana/web3.js";
+import {
+  ComputeBudgetProgram,
+  PublicKey,
+  SYSVAR_CLOCK_PUBKEY,
+} from "@solana/web3.js";
 
 import { Gofundmeme } from "../../IDL/types/gofundmeme";
 import {
@@ -50,7 +54,7 @@ export const buildStakingNetworkClaimTransaction = async ({
     staker
   );
 
-  return await gfmProgram.methods
+  const transaction = await gfmProgram.methods
     .stakerClaim()
     .accounts({
       staker,
@@ -61,4 +65,12 @@ export const buildStakingNetworkClaimTransaction = async ({
       clock: SYSVAR_CLOCK_PUBKEY,
     })
     .transaction();
+
+  transaction.add(
+    ComputeBudgetProgram.setComputeUnitLimit({
+      units: 1_000_000,
+    })
+  );
+
+  return transaction;
 };

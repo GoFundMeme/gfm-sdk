@@ -1,5 +1,6 @@
 import { Program } from "@coral-xyz/anchor";
 import {
+  ComputeBudgetProgram,
   PublicKey,
   SystemProgram,
   SYSVAR_CLOCK_PUBKEY,
@@ -42,7 +43,7 @@ export const buildStakingNetworkSyncNetworkTransaction = async ({
     GFM_MINT_ADDRESS
   );
 
-  return await gfmProgram.methods
+  const transaction = await gfmProgram.methods
     .syncStakingNetwork()
     .accounts({
       creator: cranker,
@@ -62,4 +63,12 @@ export const buildStakingNetworkSyncNetworkTransaction = async ({
       rent: SYSVAR_RENT_PUBKEY,
     })
     .transaction();
+
+  transaction.add(
+    ComputeBudgetProgram.setComputeUnitLimit({
+      units: 1_000_000,
+    })
+  );
+
+  return transaction;
 };

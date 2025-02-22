@@ -1,5 +1,6 @@
 import { BN, Program } from "@coral-xyz/anchor";
 import {
+  ComputeBudgetProgram,
   LAMPORTS_PER_SOL,
   PublicKey,
   SystemProgram,
@@ -46,7 +47,9 @@ export const buildFundPoolTransaction = async ({
       moment()
     )
   ) {
-    throw new Error("Campaign deadline has been reached. You can defund your funds if you have a position.");
+    throw new Error(
+      "Campaign deadline has been reached. You can defund your funds if you have a position."
+    );
   }
 
   const poolTreasuryPDA = getPoolTreasuryPDA(gfmProgram.programId, poolPDA);
@@ -167,27 +170,32 @@ export const buildFundPoolTransaction = async ({
   });
 
   const investInPoolUser1Ix = await gfmProgram.methods
-      .investInPool(new BN(amountToFund), new BN(0))
-      .accounts({
-        tokenProgram: TOKEN_PROGRAM_ID,
-        systemProgram: SystemProgram.programId,
-        clock: SYSVAR_CLOCK_PUBKEY,
-        userWallet: funder,
-        pool: poolPDA,
-        treasury: poolTreasuryPDA,
-        userAccount: userPDA,
-        lookupManager,
-        currentLookupTable,
-        fallbackLookupTable,
-        userPoolsLookupManager,
-        stakingNetwork,
-        stakingNetworkSyncAccount,
-      })
-      .remainingAccounts(remainingAccounts)
-      .instruction();
+    .investInPool(new BN(amountToFund), new BN(0))
+    .accounts({
+      tokenProgram: TOKEN_PROGRAM_ID,
+      systemProgram: SystemProgram.programId,
+      clock: SYSVAR_CLOCK_PUBKEY,
+      userWallet: funder,
+      pool: poolPDA,
+      treasury: poolTreasuryPDA,
+      userAccount: userPDA,
+      lookupManager,
+      currentLookupTable,
+      fallbackLookupTable,
+      userPoolsLookupManager,
+      stakingNetwork,
+      stakingNetworkSyncAccount,
+    })
+    .remainingAccounts(remainingAccounts)
+    .instruction();
 
-    const fundTransaction = new Transaction();
-    fundTransaction.add(investInPoolUser1Ix);
+  const fundTransaction = new Transaction();
+  fundTransaction.add(investInPoolUser1Ix);
+  fundTransaction.add(
+    ComputeBudgetProgram.setComputeUnitLimit({
+      units: 1_000_000,
+    })
+  );
 
-    return fundTransaction;
+  return fundTransaction;
 };

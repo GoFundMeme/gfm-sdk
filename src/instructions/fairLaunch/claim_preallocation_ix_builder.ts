@@ -1,5 +1,6 @@
 import { Program } from "@coral-xyz/anchor";
 import {
+  ComputeBudgetProgram,
   PublicKey,
   SystemProgram,
   SYSVAR_CLOCK_PUBKEY,
@@ -12,9 +13,7 @@ import {
   getAssociatedTokenAddressSync,
   TOKEN_PROGRAM_ID,
 } from "@solana/spl-token";
-import {
-  getPoolPDA,
-} from "../../utils/pdaUtils";
+import { getPoolPDA } from "../../utils/pdaUtils";
 
 export const buildClaimPreallocationTransaction = async ({
   gfmProgram,
@@ -32,7 +31,7 @@ export const buildClaimPreallocationTransaction = async ({
   if (!poolData.poolStatus.completed) {
     throw new Error("Pool isn't migrated yet.");
   }
- 
+
   const poolTokenAccount = getAssociatedTokenAddressSync(mintB, poolPDA, true);
   const userTokenAccount = getAssociatedTokenAddressSync(mintB, funder, true);
 
@@ -53,5 +52,10 @@ export const buildClaimPreallocationTransaction = async ({
 
   const claimPreallocationTransaction = new Transaction();
   claimPreallocationTransaction.add(claimPreallocationIx);
+  claimPreallocationTransaction.add(
+    ComputeBudgetProgram.setComputeUnitLimit({
+      units: 1_000_000,
+    })
+  );
   return claimPreallocationTransaction;
 };

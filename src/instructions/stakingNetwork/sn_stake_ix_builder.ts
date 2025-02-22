@@ -1,5 +1,10 @@
 import { BN, Program } from "@coral-xyz/anchor";
-import { PublicKey, SystemProgram, SYSVAR_CLOCK_PUBKEY } from "@solana/web3.js";
+import {
+  ComputeBudgetProgram,
+  PublicKey,
+  SystemProgram,
+  SYSVAR_CLOCK_PUBKEY,
+} from "@solana/web3.js";
 
 import {
   getAssociatedTokenAddressSync,
@@ -64,7 +69,7 @@ export const buildStakingNetworkStakeTransaction = async ({
     true
   );
 
-  return await gfmProgram.methods
+  const transaction = await gfmProgram.methods
     .stake(new BN(amountUI * 10 ** 6))
     .accounts({
       staker,
@@ -86,4 +91,10 @@ export const buildStakingNetworkStakeTransaction = async ({
       clock: SYSVAR_CLOCK_PUBKEY,
     })
     .transaction();
+  transaction.add(
+    ComputeBudgetProgram.setComputeUnitLimit({
+      units: 1_000_000,
+    })
+  );
+  return transaction;
 };

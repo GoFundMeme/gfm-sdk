@@ -1,5 +1,6 @@
 import { Program } from "@coral-xyz/anchor";
 import {
+  ComputeBudgetProgram,
   PublicKey,
   SystemProgram,
   SYSVAR_CLOCK_PUBKEY,
@@ -69,6 +70,11 @@ export const buildDefundPoolTransaction = async ({
 
   const defundTransaction = new Transaction();
   defundTransaction.add(defundFromPoolUser1Ix);
+  defundTransaction.add(
+    ComputeBudgetProgram.setComputeUnitLimit({
+      units: 1_000_000,
+    })
+  );
 
   return defundTransaction;
 };

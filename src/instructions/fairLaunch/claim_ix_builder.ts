@@ -1,5 +1,6 @@
 import { Program } from "@coral-xyz/anchor";
 import {
+  ComputeBudgetProgram,
   PublicKey,
   SystemProgram,
   SYSVAR_CLOCK_PUBKEY,
@@ -73,5 +74,10 @@ export const buildClaimPresaleTransaction = async ({
 
   const claimTransaction = new Transaction();
   claimTransaction.add(claimIx);
+  claimTransaction.add(
+    ComputeBudgetProgram.setComputeUnitLimit({
+      units: 1_000_000,
+    })
+  );
   return claimTransaction;
 };
