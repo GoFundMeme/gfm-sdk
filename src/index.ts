@@ -5,4 +5,3 @@ export * from "./gfmSdk";
 export * from "./instructions";
 export * from "./types";
 export * from "./utils";
-

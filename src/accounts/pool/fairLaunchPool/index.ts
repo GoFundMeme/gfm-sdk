@@ -1,4 +1,4 @@
-export * from "./utils"
+export * from "./utils";
 import { Program } from "@coral-xyz/anchor";
 import { PublicKey } from "@solana/web3.js";
 import { Gofundmeme } from "../../../IDL/types/gofundmeme";
@@ -9,12 +9,13 @@ import { buildFundPoolTransaction } from "../../../instructions/fairLaunch/fund_
 import { buildDefundPoolTransaction } from "../../../instructions/fairLaunch/defund_ix_builder";
 import { buildClaimPresaleTransaction } from "../../../instructions/fairLaunch/claim_ix_builder";
 import { buildClaimPreallocationTransaction } from "../../../instructions/fairLaunch/claim_preallocation_ix_builder";
-import { OrcaContext } from "../../../utils";
+import { createHolderUtils, getMintInfo, OrcaContext } from "../../../utils";
 import { buildHarvestOrcaPresaleTransaction } from "../../../instructions/fairLaunch/harvest_orca_ix_builder";
 import { getUserTokenRewards } from "../../funderAccount";
 import { getOrcaLpStateSummary } from "./utils";
 import { buildClaimRewardsTransaction } from "../../../instructions/fairLaunch/claim_rewards_ix_builder";
 import { getRaydiumLpStateSummary } from "../bondingCurvePool/utils";
+import { Mint } from "@solana/spl-token";
 
 export const buildFairLaunchPoolUtils = ({
   gfmProgram,
@@ -60,22 +61,33 @@ export const buildFairLaunchPoolActions = async ({
     pool.tokenAMint,
     pool.tokenBMint
   );
+
+  const mintA: Mint = await getMintInfo({
+    connection: gfmProgram.provider.connection,
+    mintAddress: pool.tokenAMint,
+  });
+  const mintB: Mint = await getMintInfo({
+    connection: gfmProgram.provider.connection,
+    mintAddress: pool.tokenBMint,
+  });
   const refreshPoolData = async () => {
     pool = await gfmProgram.account.pool.fetch(poolPDA);
   };
-  const createFundTransaction = function (payload: {
+  const createFundTransaction = async (payload: {
     solAmount: number;
     funder: PublicKey;
-  }) {
-    return buildFundPoolTransaction({
+  }) => {
+    await refreshPoolData();
+    return await buildFundPoolTransaction({
       gfmProgram,
       mintA: pool.tokenAMint,
       mintB: pool.tokenBMint,
       ...payload,
     });
   };
-  const createDefundTransaction = function (payload: { funder: PublicKey }) {
-    return buildDefundPoolTransaction({
+  const createDefundTransaction = async (payload: { funder: PublicKey }) => {
+    await refreshPoolData();
+    return await buildDefundPoolTransaction({
       gfmProgram,
       mintA: pool.tokenAMint,
       mintB: pool.tokenBMint,
@@ -158,10 +170,23 @@ export const buildFairLaunchPoolActions = async ({
       });
     };
   };
+  const { fetchBalanceA, fetchBalanceB } = await createHolderUtils({
+    mintA,
+    mintB,
+    gfmProgram,
+  });
 
   return {
+    mintA,
+    mintB,
     poolData: pool,
     refreshPoolData,
+    utils: {
+      balanceUtils: {
+        fetchBalanceA,
+        fetchBalanceB,
+      },
+    },
     actions: {
       fund: createFundTransaction,
       defund: createDefundTransaction,

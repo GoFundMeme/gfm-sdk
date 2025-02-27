@@ -97,23 +97,27 @@ export const syncRaydiumBondingCurvePoolStakingNetwork = async ({
     nftPosition
   );
 
-  const feeConfigs = await raydium.api.getCpmmConfigs();
+  // const feeConfigs = await raydium.api.getCpmmConfigs();
 
-  if (network !== "mainnet") {
-    feeConfigs.forEach((config) => {
-      config.id = getCpmmPdaAmmConfigId(
-        DEV_CREATE_CPMM_POOL_PROGRAM,
-        config.index
-      ).publicKey.toBase58();
-    });
-  }
+  // if (network !== "mainnet") {
+  //   feeConfigs.forEach((config) => {
+  //     config.id = getCpmmPdaAmmConfigId(
+  //       DEV_CREATE_CPMM_POOL_PROGRAM,
+  //       config.index
+  //     ).publicKey.toBase58();
+  //   });
+  // }
+
+  const { config } = await raydium.cpmm.getCpmmPoolKeys(
+    pool.whirlpool.toString()
+  );
 
   const poolKeys = getCreatePoolKeys({
     programId:
       network === "mainnet"
         ? CREATE_CPMM_POOL_PROGRAM
         : DEV_CREATE_CPMM_POOL_PROGRAM, // devnet: DEVNET_PROGRAM_ID.CREATE_CPMM_POOL_PROGRAM,
-    configId: new PublicKey(feeConfigs[0].id),
+    configId: new PublicKey(config.id),
     mintA: tokenAMint,
     mintB: tokenBMint,
   });

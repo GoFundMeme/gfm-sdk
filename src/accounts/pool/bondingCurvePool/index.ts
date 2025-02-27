@@ -9,7 +9,13 @@ import { Raydium } from "@raydium-io/raydium-sdk-v2";
 import { getQuoteForAmount } from "../../../utils/priceUtils";
 import Decimal from "decimal.js";
 import { buildSwapTransaction } from "../../../instructions/bondingCurve/swap_ix_builder";
-import { getDecimals, OrcaContext } from "../../../utils";
+import {
+  createHolderUtils,
+  getDecimals,
+  getHolderTokenBalance,
+  getMintInfo,
+  OrcaContext,
+} from "../../../utils";
 import { getOrcaLpStateSummary } from "../fairLaunchPool/utils";
 import { getRaydiumLpStateSummary } from "./utils";
 import { syncRaydiumBondingCurvePoolStakingNetwork } from "../../../instructions/poolStakingNetwork/sync_bc_pool_staking_raydium_ix_builder";
@@ -17,7 +23,7 @@ import { getPoolStakerAccountInfo } from "../../poolStakerAccount";
 import { buildPoolStakingTransaction } from "../../../instructions/poolStakingNetwork/pool_stake_ix_builder";
 import { buildPoolUnstakingTransaction } from "../../../instructions/poolStakingNetwork/pool_unstake_ix_builder";
 import { buildPoolClaimStakingRewardsTransaction } from "../../../instructions/poolStakingNetwork/pool_staking_claim_ix_builder";
-
+import { Mint } from "@solana/spl-token";
 export const buildBondingCurvePoolUtils = ({
   gfmProgram,
   raydium,
@@ -45,7 +51,7 @@ export const buildBondingCurvePoolUtils = ({
         raydium,
       });
     } catch {
-      throw new Error("No fair launch pool found with this key");
+      throw new Error("No bonding curve pool found with this key");
     }
   };
   return { fetchBondingCurvePool };
@@ -67,6 +73,15 @@ export const buildBondingCurvePoolActions = async ({
     pool.tokenAMint,
     pool.tokenBMint
   );
+  const mintA: Mint = await getMintInfo({
+    connection: gfmProgram.provider.connection,
+    mintAddress: pool.tokenAMint,
+  });
+  const mintB: Mint = await getMintInfo({
+    connection: gfmProgram.provider.connection,
+    mintAddress: pool.tokenBMint,
+  });
+
   const refreshPoolData = async () => {
     pool = await gfmProgram.account.bondingCurvePool.fetch(poolPDA);
   };
@@ -80,12 +95,13 @@ export const buildBondingCurvePoolActions = async ({
     mint: pool.tokenBMint,
   });
 
-  const createQuoteForAmountUtil = (payload: {
+  const createQuoteForAmountUtil = async (payload: {
     amountInUI: Decimal;
     slippage: number;
     direction: "buy" | "sell";
   }) => {
-    return getQuoteForAmount({
+    await refreshPoolData();
+    return await getQuoteForAmount({
       pool,
       ...payload,
       decimals: payload.direction === "buy" ? decinalA : decinalB,
@@ -100,6 +116,7 @@ export const buildBondingCurvePoolActions = async ({
     slippage: number;
     funder: PublicKey;
   }) => {
+    await refreshPoolData();
     const quote = await getQuoteForAmount({
       pool,
       direction: "buy",
@@ -126,6 +143,7 @@ export const buildBondingCurvePoolActions = async ({
     slippage: number;
     funder: PublicKey;
   }) => {
+    await refreshPoolData();
     const quote = await getQuoteForAmount({
       pool,
       direction: "sell",
@@ -220,9 +238,23 @@ export const buildBondingCurvePoolActions = async ({
     });
   };
 
+  const { fetchBalanceA, fetchBalanceB } = await createHolderUtils({
+    mintA,
+    mintB,
+    gfmProgram,
+  });
+
   return {
+    mintA,
+    mintB,
     poolData: pool,
     refreshPoolData,
+    utils: {
+      balanceUtils: {
+        fetchBalanceA,
+        fetchBalanceB,
+      },
+    },
     actions: {
       swap: {
         getQuoteForAmount: createQuoteForAmountUtil,
