@@ -3,13 +3,15 @@ import { CreateBondingCurvePayload, CreateBondingCurveProcessPayload, PoolsUtils
 import { buildBondingCurveApiUtils } from "./pools/bondingCurve";
 import { buildFailLaunchApiUtils } from "./pools/fairLaunch";
 import { createSubscriptionUtils } from "./websockets/subscriptions/createSubsciptionUtils";
+import { Gofundmeme } from "../IDL";
+import { Program } from "@coral-xyz/anchor";
 
 export const BASE_API_URL = "http://build.gofundmeme.io/api/v1"
 export const BASE_WS_URL = "build.gofundmeme.io/api/v1"
 
-export const buildApiUtils = async (poolUtils: PoolsUtils) => {
-    const bondingCurveApiUtils = await buildBondingCurveApiUtils(poolUtils)
-    const fairLaunchApiUtilse = await buildFailLaunchApiUtils(poolUtils)
+export const buildApiUtils = async (poolUtils: PoolsUtils, gfmProgram: Program<Gofundmeme>) => {
+    const bondingCurveApiUtils = await buildBondingCurveApiUtils(poolUtils, gfmProgram)
+    const fairLaunchApiUtilse = await buildFailLaunchApiUtils(poolUtils, gfmProgram)
     const subscription = createSubscriptionUtils()
     return {
         bondingCurve: bondingCurveApiUtils,

@@ -32,7 +32,7 @@ export const initGoFundMemeSDK = async ({
   };
 
   const pools = await builtPoolUtils({ gfmProgram, raydium, orcaContext });
-  const api = await buildApiUtils(pools)
+  const api = await buildApiUtils(pools, gfmProgram)
   return {
     gfmProgram,
     pools,

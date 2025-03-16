@@ -2,8 +2,10 @@ import axios from "axios";
 import { CreateFairLaunchPayload, CreateFairLaunchProcessPayload, CreateFairLaunchProcessSuccessResponse, CreateFairLaunchRequestSuccessResponse } from "../../../types";
 import { PublicKey, Transaction } from "@solana/web3.js";
 import { BASE_API_URL } from "../..";
+import { Program } from "@coral-xyz/anchor";
+import { Gofundmeme } from "../../../IDL";
 
-export const createFairLaunchRequest = async (payload: CreateFairLaunchPayload) => {
+export const createFairLaunchRequest = async (payload: CreateFairLaunchPayload, gfmProgram: Program<Gofundmeme>) => {
     validateCreatePayload(payload)
     const { data } = await axios.post<CreateFairLaunchRequestSuccessResponse>(`${BASE_API_URL}/pool/fair-launch/create/request`, payload)
     if (data.success === false) {
@@ -11,7 +13,7 @@ export const createFairLaunchRequest = async (payload: CreateFairLaunchPayload) 
     }
     const { rawTransaction, mintAddress, requestId } = data.data
     return {
-        transaction: Transaction.from(rawTransaction),
+        transaction: Transaction.from(new Uint8Array((rawTransaction as any).data)),
         mintAddress: new PublicKey(mintAddress),
         requestId
     }

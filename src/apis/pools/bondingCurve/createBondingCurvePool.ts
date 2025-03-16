@@ -11,7 +11,7 @@ export const createBondingCurveRequest = async (payload: CreateBondingCurvePaylo
     }
     const { rawTransaction, mintAddress, requestId } = data.data
     return {
-        transaction: Transaction.from(rawTransaction),
+        transaction: Transaction.from(new Uint8Array((rawTransaction as any).data)),
         mintAddress: new PublicKey(mintAddress),
         requestId
     }
