@@ -6,6 +6,19 @@
 [![NPM](https://img.shields.io/npm/v/@gofundmeme/sdk?color=red&label=NPM&style=for-the-badge)](https://www.npmjs.com/package/@gofundmeme/sdk)  
 
 ---
+If you’re developing a frontend application, consider using @gofundmeme/sdk-frontend instead.
+
+Why Choose the Frontend SDK?
+The full SDK includes dependencies like Orca SDK, Raydium SDK, and Meteora SDK, which can cause compatibility issues in frontend environments. The frontend version is optimized for seamless client-side integration.
+
+Use @gofundmeme/sdk-frontend if:
+	•	You don’t need Harvesting features.
+	•	You only require pool interactions, swaps, and claims.
+	•	You want a lightweight, frontend-optimized SDK.
+
+Frontend SDK Documentation:
+See here: https://www.npmjs.com/package/@gofundmeme/sdk-frontend
+
 
 ## 🌟 **Introduction**
 The **GoFundMeme SDK** is the official **all-in-one developer toolkit** for interacting with the **GoFundMeme Protocol (GFM)**. It enables seamless integration with **Fair Launches, Bonding Curves, Staking, Harvesting, and Rewards**.
@@ -55,21 +68,6 @@ const connection = new Connection("https://api.mainnet-beta.solana.com");
   console.log("Pool Data:", pool);
 })();
 ```
-
-🎨 Looking for a Lightweight Frontend SDK?
-
-If you’re developing a frontend application, consider using @gofundmeme/sdk-frontend instead.
-
-🚨 Why Choose the Frontend SDK?
-The full SDK includes dependencies like Orca SDK, Raydium SDK, and Meteora SDK, which can introduce compatibility issues in frontend environments. The frontend version is optimized for seamless client-side integration.
-
-✅ Use @gofundmeme/sdk-frontend if:
-	•	You don’t need Harvesting features.
-	•	You only require pool interactions, swaps, and claims.
-	•	You want a lightweight, frontend-optimized SDK.
-
-📚 Frontend SDK Documentation:
-👉 Read More Here
 
 ### 🏗️ Example Use Cases
 
