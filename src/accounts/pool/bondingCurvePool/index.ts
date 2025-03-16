@@ -1,6 +1,6 @@
 export * from "./utils";
-import { Program } from "@coral-xyz/anchor";
-import { PublicKey } from "@solana/web3.js";
+import { BN, Program } from "@coral-xyz/anchor";
+import { LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
 import { Gofundmeme } from "../../../IDL/types/gofundmeme";
 import { getPoolPDA } from "../../../utils/pdaUtils";
 import { SOL_PUBLIC_KEY } from "../../../constants";
@@ -9,7 +9,12 @@ import { Raydium } from "@raydium-io/raydium-sdk-v2";
 import { getQuoteForAmount } from "../../../utils/priceUtils";
 import Decimal from "decimal.js";
 import { buildSwapTransaction } from "../../../instructions/bondingCurve/swap_ix_builder";
-import { getDecimals, OrcaContext } from "../../../utils";
+import {
+  createHolderUtils,
+  getDecimals,
+  getMintInfo,
+  OrcaContext,
+} from "../../../utils";
 import { getOrcaLpStateSummary } from "../fairLaunchPool/utils";
 import { getRaydiumLpStateSummary } from "./utils";
 import { syncRaydiumBondingCurvePoolStakingNetwork } from "../../../instructions/poolStakingNetwork/sync_bc_pool_staking_raydium_ix_builder";
@@ -17,7 +22,8 @@ import { getPoolStakerAccountInfo } from "../../poolStakerAccount";
 import { buildPoolStakingTransaction } from "../../../instructions/poolStakingNetwork/pool_stake_ix_builder";
 import { buildPoolUnstakingTransaction } from "../../../instructions/poolStakingNetwork/pool_unstake_ix_builder";
 import { buildPoolClaimStakingRewardsTransaction } from "../../../instructions/poolStakingNetwork/pool_staking_claim_ix_builder";
-
+import { Mint } from "@solana/spl-token";
+import { meteoraDAMMFHarvestMothods } from "../../../instructions/hervest_meteora_damm/harvest";
 export const buildBondingCurvePoolUtils = ({
   gfmProgram,
   raydium,
@@ -45,7 +51,7 @@ export const buildBondingCurvePoolUtils = ({
         raydium,
       });
     } catch {
-      throw new Error("No fair launch pool found with this key");
+      throw new Error("No bonding curve pool found with this key");
     }
   };
   return { fetchBondingCurvePool };
@@ -67,6 +73,15 @@ export const buildBondingCurvePoolActions = async ({
     pool.tokenAMint,
     pool.tokenBMint
   );
+  const mintA: Mint = await getMintInfo({
+    connection: gfmProgram.provider.connection,
+    mintAddress: pool.tokenAMint,
+  });
+  const mintB: Mint = await getMintInfo({
+    connection: gfmProgram.provider.connection,
+    mintAddress: pool.tokenBMint,
+  });
+
   const refreshPoolData = async () => {
     pool = await gfmProgram.account.bondingCurvePool.fetch(poolPDA);
   };
@@ -80,12 +95,13 @@ export const buildBondingCurvePoolActions = async ({
     mint: pool.tokenBMint,
   });
 
-  const createQuoteForAmountUtil = (payload: {
+  const createQuoteForAmountUtil = async (payload: {
     amountInUI: Decimal;
     slippage: number;
     direction: "buy" | "sell";
   }) => {
-    return getQuoteForAmount({
+    await refreshPoolData();
+    return await getQuoteForAmount({
       pool,
       ...payload,
       decimals: payload.direction === "buy" ? decinalA : decinalB,
@@ -100,6 +116,7 @@ export const buildBondingCurvePoolActions = async ({
     slippage: number;
     funder: PublicKey;
   }) => {
+    await refreshPoolData();
     const quote = await getQuoteForAmount({
       pool,
       direction: "buy",
@@ -126,6 +143,7 @@ export const buildBondingCurvePoolActions = async ({
     slippage: number;
     funder: PublicKey;
   }) => {
+    await refreshPoolData();
     const quote = await getQuoteForAmount({
       pool,
       direction: "sell",
@@ -156,6 +174,12 @@ export const buildBondingCurvePoolActions = async ({
           gfmProgram,
           pool,
         });
+      } else if (pool.poolType.meteoraDAMM) {
+        return meteoraDAMMFHarvestMothods.getMeteoraDAMMHarvestState({
+          gfmProgram,
+          pool,
+          mint: mintB
+        });
       }
       return getRaydiumLpStateSummary({
         gfmProgram,
@@ -173,6 +197,13 @@ export const buildBondingCurvePoolActions = async ({
           raydium,
           ...payload,
         });
+      } else if (pool.poolType.meteoraDAMM) {
+        return meteoraDAMMFHarvestMothods.createMeteoraDAMMHarvestPoolStakingNetwork({
+          gfmProgram,
+          cranker: payload.cranker,
+          pool,
+          mint: mintB
+        })
       }
       return syncRaydiumBondingCurvePoolStakingNetwork({
         gfmProgram,
@@ -220,9 +251,36 @@ export const buildBondingCurvePoolActions = async ({
     });
   };
 
+  const { fetchBalanceA, fetchBalanceB } = await createHolderUtils({
+    mintA,
+    mintB,
+    gfmProgram,
+  });
+
+  const getMarketcapInSol = async (refreshPool?: boolean) => {
+    if (refreshPool)
+      await refreshPoolData()
+    return pool.totalRaised.mul(pool.totalSupply).div(pool.tokenBalance).div(new BN(LAMPORTS_PER_SOL)).toNumber()
+  }
+  const getVitualPricePerToken = async (refreshPool?: boolean) => {
+    return (await getMarketcapInSol(refreshPool)) / pool.totalSupply.div(new BN(10 ** mintB.decimals)).toNumber()
+  }
+
   return {
+    mintA,
+    mintB,
     poolData: pool,
     refreshPoolData,
+    utils: {
+      balanceUtils: {
+        fetchBalanceA,
+        fetchBalanceB,
+      },
+      marketUtils: {
+        getVitualPricePerToken: getVitualPricePerToken,
+        getMarketCapInSol: getMarketcapInSol
+      }
+    },
     actions: {
       swap: {
         getQuoteForAmount: createQuoteForAmountUtil,
