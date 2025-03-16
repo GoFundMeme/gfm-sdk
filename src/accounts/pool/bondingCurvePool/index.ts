@@ -12,7 +12,6 @@ import { buildSwapTransaction } from "../../../instructions/bondingCurve/swap_ix
 import {
   createHolderUtils,
   getDecimals,
-  getHolderTokenBalance,
   getMintInfo,
   OrcaContext,
 } from "../../../utils";
