@@ -70,6 +70,9 @@ The full SDK includes external dependencies like Orca SDK, Raydium SDK, and Mete
 📚 Frontend SDK (@gofundmeme/sdk-frontend) Documentation:
 See Here
 
+📚 Frontend SDK (@gofundmeme/sdk-frontend) Documentation:
+See Here
+
 ### 🏗️ Example Use Cases
 
 1️⃣ Fetching a Fair Launch Pool
