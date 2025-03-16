@@ -55,23 +55,21 @@ const connection = new Connection("https://api.mainnet-beta.solana.com");
   console.log("Pool Data:", pool);
 })();
 ```
-🎨 Need a Lightweight Frontend SDK?
 
-If you’re working on a frontend project, you may want to use @gofundmeme/sdk-frontend instead.
+🎨 Looking for a Lightweight Frontend SDK?
 
-🚨 Why?
-The full SDK includes external dependencies like Orca SDK, Raydium SDK, and Meteora SDK, which can cause compatibility issues in frontend applications.
+If you’re developing a frontend application, consider using @gofundmeme/sdk-frontend instead.
+
+🚨 Why Choose the Frontend SDK?
+The full SDK includes dependencies like Orca SDK, Raydium SDK, and Meteora SDK, which can introduce compatibility issues in frontend environments. The frontend version is optimized for seamless client-side integration.
 
 ✅ Use @gofundmeme/sdk-frontend if:
 	•	You don’t need Harvesting features.
-	•	You only need pool interactions, swaps, and claims.
-	•	You want a lighter, more frontend-friendly package.
+	•	You only require pool interactions, swaps, and claims.
+	•	You want a lightweight, frontend-optimized SDK.
 
-📚 Frontend SDK (@gofundmeme/sdk-frontend) Documentation:
-See Here
-
-📚 Frontend SDK (@gofundmeme/sdk-frontend) Documentation:
-See Here
+📚 Frontend SDK Documentation:
+👉 Read More Here
 
 ### 🏗️ Example Use Cases
 
