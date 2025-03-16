@@ -20,7 +20,7 @@ This package is optimized for **backend development** and **includes full Harves
 ### **Using npm:**
 ```sh
 npm install @gofundmeme/sdk @solana/web3.js moment decimal.js
-
+```
 Using yarn:
 
 yarn add @gofundmeme/sdk @solana/web3.js moment decimal.js
@@ -37,6 +37,7 @@ yarn add @gofundmeme/sdk @solana/web3.js moment decimal.js
 
 Initialize the SDK
 
+```ts
 import { Connection } from "@solana/web3.js";
 import { initGoFundMemeSDK } from "@gofundmeme/sdk";
 
@@ -53,7 +54,7 @@ const connection = new Connection("https://api.mainnet-beta.solana.com");
 
   console.log("Pool Data:", pool);
 })();
-
+```
 🎨 Need a Lightweight Frontend SDK?
 
 If you’re working on a frontend project, you may want to use @gofundmeme/sdk-frontend instead.
@@ -79,7 +80,7 @@ const pool = await gfmSDK.pools.fairLaunch.fetchFairLaunchPool({
 console.log("Fair Launch Pool:", pool);
 
 2️⃣ Creating a Fair Launch Pool
-
+```ts
 const { transaction, requestId } = await gfmSDK.api.fairLaunch.createPool.request({
   token: {
     base64: "IMAGE_BASE64_STRING",
@@ -115,16 +116,18 @@ const { mintAddress, txid } = await gfmSDK.api.fairLaunch.createPool.process({
 });
 
 console.log(`🎉 Pool Created! Mint Address: ${mintAddress}, TXID: ${txid}`);
+```
 
 3️⃣ Fetching a Bonding Curve Pool
-
+```ts
 const bondingCurvePool = await gfmSDK.pools.bondingCurve.fetchBondingCurvePool({
   mintB: "MINT_ADDRESS_HERE"
 });
 console.log("Bonding Curve Pool Data:", bondingCurvePool);
+```
 
 4️⃣ Buying Tokens on the Bonding Curve
-
+```ts
 import { Keypair, sendAndConfirmTransaction } from "@solana/web3.js";
 import Decimal from "decimal.js";
 
@@ -141,9 +144,10 @@ const { quote: buyQuote, transaction: buyTransaction } =
 const buyTxid = await sendAndConfirmTransaction(connection, buyTransaction, [payer]);
 
 console.log(`🎉 Successfully bought tokens! TXID: ${buyTxid}`);
+```
 
 5️⃣ Harvesting LP Fees
-
+```ts
 const harvestTransaction = await bondingCurvePool.actions.harvestUtils.harvest({
   cranker: payer.publicKey,
 });
@@ -155,7 +159,7 @@ const harvestTxid = await sendAndConfirmTransaction(
 );
 
 console.log(`🌾 Successfully harvested LP fees! TXID: ${harvestTxid}`);
-
+```
 📖 Learn More
 
 📚 Full Documentation: docs.gofundmeme.io
