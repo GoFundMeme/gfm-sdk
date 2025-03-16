@@ -15,8 +15,6 @@ import {
   getPoolTreasuryPDA,
   getProgramStakingNetworkPDA,
   getProgramStakingNetworkTreasurySyncPDA,
-  getUserAccountLookupTableManagerPDA,
-  getUserAccountLookupTablePDA,
   getUserAccountPDA,
   getUserPoolsLookupTableManagerPDA,
   getUserPoolsLookupTablePDA,
@@ -55,33 +53,6 @@ export const buildFundPoolTransaction = async ({
   const poolTreasuryPDA = getPoolTreasuryPDA(gfmProgram.programId, poolPDA);
 
   const userPDA = getUserAccountPDA(gfmProgram.programId, poolPDA, funder);
-
-  const lookupManager = getUserAccountLookupTableManagerPDA(
-    gfmProgram.programId,
-    poolPDA
-  );
-
-  const lookupManagerData = false
-    ? { currentTableCount: 1 }
-    : await gfmProgram.account.userAccountLookupTableManager.fetch(
-        lookupManager
-      );
-
-  const currentIndex =
-    lookupManagerData.currentTableCount < 0
-      ? 1
-      : lookupManagerData.currentTableCount;
-
-  const currentLookupTable = getUserAccountLookupTablePDA(
-    gfmProgram.programId,
-    poolPDA,
-    currentIndex
-  );
-  const fallbackLookupTable = getUserAccountLookupTablePDA(
-    gfmProgram.programId,
-    poolPDA,
-    currentIndex + 1
-  );
 
   const userPoolsLookupManager = getUserPoolsLookupTableManagerPDA(
     gfmProgram.programId,
@@ -179,9 +150,6 @@ export const buildFundPoolTransaction = async ({
       pool: poolPDA,
       treasury: poolTreasuryPDA,
       userAccount: userPDA,
-      lookupManager,
-      currentLookupTable,
-      fallbackLookupTable,
       userPoolsLookupManager,
       stakingNetwork,
       stakingNetworkSyncAccount,

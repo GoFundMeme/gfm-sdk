@@ -5,6 +5,7 @@ import { getWhirlpoolClient, initRaydiumSdk, OrcaContext } from "../utils";
 import { builtPoolUtils } from "../accounts/pool";
 import { Raydium } from "@raydium-io/raydium-sdk-v2";
 import { buildStakingNetworkActions } from "../accounts";
+import { buildApiUtils } from "../apis";
 
 export const initGoFundMemeSDK = async ({
   connection,
@@ -30,9 +31,12 @@ export const initGoFundMemeSDK = async ({
     });
   };
 
+  const pools = await builtPoolUtils({ gfmProgram, raydium, orcaContext });
+  const api = await buildApiUtils(pools)
   return {
     gfmProgram,
-    pools: builtPoolUtils({ gfmProgram, raydium, orcaContext }),
+    pools,
     getStakingNetwork: getStakingNetwork,
+    api
   };
 };

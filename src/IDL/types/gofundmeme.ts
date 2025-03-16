@@ -665,22 +665,7 @@ export type Gofundmeme = {
           "isSigner": false
         },
         {
-          "name": "lookupManager",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
           "name": "userPoolsLookupManager",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "currentLookupTable",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "fallbackLookupTable",
           "isMut": true,
           "isSigner": false
         },
@@ -3881,9 +3866,2393 @@ export type Gofundmeme = {
           "type": "u64"
         }
       ]
+    },
+    {
+      "name": "meteoraBcInitPool",
+      "accounts": [
+        {
+          "name": "admin",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "creator",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "tokenAMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenBMint",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "metadata",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "treasuryTokenVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "treasury",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stakingNetwork",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stakingNetworkSyncAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "metadataProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "token",
+          "type": {
+            "defined": "TokenData"
+          }
+        },
+        {
+          "name": "tokenomics",
+          "type": {
+            "defined": "BondingCurveTokenomics"
+          }
+        },
+        {
+          "name": "amountIn",
+          "type": "u64"
+        },
+        {
+          "name": "isDamm",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "meteoraBcCreatePool",
+      "accounts": [
+        {
+          "name": "creator",
+          "isMut": true,
+          "isSigner": true,
+          "docs": [
+            "Signer"
+          ]
+        },
+        {
+          "name": "creatorToken0",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "creatorToken1",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bondingCurvePool",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "poolPositionTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "treasury",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "dammProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "config",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenAMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenBMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aTokenVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bTokenVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVaultLpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVaultLpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVaultLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVaultLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "payerTokenA",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "payerTokenB",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "payerPoolLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "protocolTokenAFee",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "protocolTokenBFee",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "vaultProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "The Token program"
+          ]
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "System program"
+          ]
+        },
+        {
+          "name": "mintMetadata",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "Associated Token program"
+          ]
+        },
+        {
+          "name": "metadataProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "Rent sysvar"
+          ]
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "meteoraBcCreateAndLockEscrow",
+      "accounts": [
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "dammProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bondingCurvePool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "poolTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenBMint",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "treasury",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "treasuryTokenAccount",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lockEscrow",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "payer",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "sourceTokens",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "escrowVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVaultLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVaultLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVaultLpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVaultLpMint",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "syncMeteoraDammPoolStakingNetwork",
+      "accounts": [
+        {
+          "name": "creator",
+          "isMut": true,
+          "isSigner": true,
+          "docs": [
+            "The owner who has control over the user account."
+          ]
+        },
+        {
+          "name": "bondingCurvePool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "poolStakingNetwork",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "The staking network account, derived using seeds."
+          ]
+        },
+        {
+          "name": "networkTokenAccountA",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "The pool's token accounts from which rewards will be distributed.",
+            "CHECK"
+          ]
+        },
+        {
+          "name": "networkTokenAccountB",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "mintA",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "mintB",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "The mint account for the GFM token."
+          ]
+        },
+        {
+          "name": "stakingNetwork",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stakingNetworkWsolAccount",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "The staking network's WSOL account.",
+            "CHECK"
+          ]
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "dammProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lockEscrow",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "sourceTokens",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "escrowVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aTokenVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bTokenVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVaultLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVaultLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVaultLpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVaultLpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userAToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userBToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "vaultProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "The associated token program account."
+          ]
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "maxAmount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "meteoraFlInitPool",
+      "accounts": [
+        {
+          "name": "admin",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "creator",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "tokenAMint",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "tokenBMint",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "userPoolsLookupManager",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "userAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stakingNetworkSyncAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK",
+            "CHECK"
+          ]
+        }
+      ],
+      "args": [
+        {
+          "name": "token",
+          "type": {
+            "defined": "TokenData"
+          }
+        },
+        {
+          "name": "tokenomics",
+          "type": {
+            "defined": "Tokenomics"
+          }
+        },
+        {
+          "name": "amountIn",
+          "type": "u64"
+        },
+        {
+          "name": "hours",
+          "type": "u64"
+        },
+        {
+          "name": "isDamm",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "fairLaunchFundsTransfer",
+      "accounts": [
+        {
+          "name": "admin",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "creator",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "wrappedSolAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "treasury",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "solAddress",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "token0Mint",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "Token_0 mint, the key must smaller then token_1 mint."
+          ]
+        },
+        {
+          "name": "token1Mint",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "Token_1 mint, the key must grater then token_0 mint."
+          ]
+        },
+        {
+          "name": "stakingNetwork",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "The staking network account, derived using seeds."
+          ]
+        },
+        {
+          "name": "stakingNetworkSyncAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "Program to create mint account and mint tokens"
+          ]
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "Program to create an ATA for receiving position NFT"
+          ]
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "meteoraFlCreatePool",
+      "accounts": [
+        {
+          "name": "creator",
+          "isMut": true,
+          "isSigner": true,
+          "docs": [
+            "Signer"
+          ]
+        },
+        {
+          "name": "creatorToken0",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "creatorToken1",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "fairLaunchPool",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "poolPositionTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "treasury",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "dammProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "config",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenAMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenBMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aTokenVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bTokenVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVaultLpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVaultLpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVaultLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVaultLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "payerTokenA",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "payerTokenB",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "payerPoolLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "protocolTokenAFee",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "protocolTokenBFee",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "vaultProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "The Token program"
+          ]
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "System program"
+          ]
+        },
+        {
+          "name": "mintMetadata",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "Associated Token program"
+          ]
+        },
+        {
+          "name": "metadataProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "Rent sysvar"
+          ]
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "meteoraFlCreateAndLockEscrow",
+      "accounts": [
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "dammProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "fairLaunchPool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "poolTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenBMint",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "treasury",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "treasuryTokenAccount",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lockEscrow",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "payer",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "sourceTokens",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "escrowVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVaultLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVaultLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVaultLpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVaultLpMint",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "meteoraDammHarvest",
+      "accounts": [
+        {
+          "name": "creator",
+          "isMut": true,
+          "isSigner": true,
+          "docs": [
+            "The owner who has control over the user account."
+          ]
+        },
+        {
+          "name": "fairLaunchPool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "poolStakingNetwork",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "The staking network account, derived using seeds.",
+            "CHECK"
+          ]
+        },
+        {
+          "name": "networkTokenAccountA",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "The pool's token accounts from which rewards will be distributed.",
+            "CHECK"
+          ]
+        },
+        {
+          "name": "networkTokenAccountB",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "mintA",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "mintB",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "The mint account for the GFM token."
+          ]
+        },
+        {
+          "name": "stakingNetwork",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stakingNetworkWsolAccount",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "The staking network's WSOL account.",
+            "CHECK"
+          ]
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "dammProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lockEscrow",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "sourceTokens",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "escrowVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aTokenVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bTokenVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVaultLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVaultLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVaultLpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVaultLpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userAToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userBToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "vaultProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "The associated token program account."
+          ]
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "maxAmount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "meteoraAvInitPool",
+      "accounts": [
+        {
+          "name": "admin",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "creator",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "tokenAMint",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "tokenBMint",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "feeConfig",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK",
+            "CHECK"
+          ]
+        },
+        {
+          "name": "userPoolsLookupManager",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stakingNetworkSyncAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK",
+            "CHECK"
+          ]
+        }
+      ],
+      "args": [
+        {
+          "name": "token",
+          "type": {
+            "defined": "TokenData"
+          }
+        },
+        {
+          "name": "tokenomics",
+          "type": {
+            "defined": "AlphaVaultTokenomics"
+          }
+        },
+        {
+          "name": "amountIn",
+          "type": "u64"
+        },
+        {
+          "name": "isDamm",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "avFundsTransfer",
+      "accounts": [
+        {
+          "name": "admin",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "creator",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "wrappedSolAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "treasury",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "solAddress",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "token0Mint",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "Token_0 mint, the key must smaller then token_1 mint."
+          ]
+        },
+        {
+          "name": "token1Mint",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "Token_1 mint, the key must grater then token_0 mint."
+          ]
+        },
+        {
+          "name": "stakingNetwork",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "The staking network account, derived using seeds."
+          ]
+        },
+        {
+          "name": "stakingNetworkSyncAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "Program to create mint account and mint tokens"
+          ]
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "Program to create an ATA for receiving position NFT"
+          ]
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "meteoraAvCreatePool",
+      "accounts": [
+        {
+          "name": "creator",
+          "isMut": true,
+          "isSigner": true,
+          "docs": [
+            "Signer"
+          ]
+        },
+        {
+          "name": "creatorToken0",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "creatorToken1",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "alphaVaultPool",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "poolPositionTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "treasury",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "dammProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "config",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenAMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenBMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aTokenVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bTokenVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVaultLpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVaultLpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVaultLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVaultLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "payerTokenB",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "payerTokenA",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "payerPoolLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "protocolTokenAFee",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "protocolTokenBFee",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "vaultProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "The Token program"
+          ]
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "System program"
+          ]
+        },
+        {
+          "name": "mintMetadata",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "Associated Token program"
+          ]
+        },
+        {
+          "name": "metadataProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "Rent sysvar"
+          ]
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "meteoraAvCreateAndLockEscrow",
+      "accounts": [
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "dammProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "alphaVaultPool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "poolTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenBMint",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "treasury",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "treasuryTokenAccount",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lockEscrow",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "payer",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "sourceTokens",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "escrowVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVaultLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVaultLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVaultLpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVaultLpMint",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "setupAvVesting",
+      "accounts": [
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "admin",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "launchedPoolsLookupManager",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "poolVestingTable",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "treasury",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenMint",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "treasuryTokenAccount",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "poolTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "meteoraAvDammHarvest",
+      "accounts": [
+        {
+          "name": "creator",
+          "isMut": true,
+          "isSigner": true,
+          "docs": [
+            "The owner who has control over the user account."
+          ]
+        },
+        {
+          "name": "alphaVaultPool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "poolStakingNetwork",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "The staking network account, derived using seeds.",
+            "CHECK"
+          ]
+        },
+        {
+          "name": "networkTokenAccountA",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "The pool's token accounts from which rewards will be distributed.",
+            "CHECK"
+          ]
+        },
+        {
+          "name": "networkTokenAccountB",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "mintA",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "mintB",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "The mint account for the GFM token."
+          ]
+        },
+        {
+          "name": "stakingNetwork",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stakingNetworkWsolAccount",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "The staking network's WSOL account.",
+            "CHECK"
+          ]
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "dammProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lockEscrow",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "sourceTokens",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "escrowVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aTokenVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bTokenVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVaultLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVaultLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVaultLpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVaultLpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userAToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userBToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "vaultProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "The associated token program account."
+          ]
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "maxAmount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "avMultiClaim",
+      "accounts": [
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "The token program used for transferring tokens."
+          ]
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "The system program for basic Solana operations."
+          ]
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true,
+          "docs": [
+            "The signer initiating the transaction."
+          ]
+        },
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "The pool from which the rewards are claimed.",
+            "This pool is identified by a unique set of seeds derived from its token mints."
+          ]
+        },
+        {
+          "name": "userAccount",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "The user account for whom the claim is made.",
+            "This account is associated with the pool and holds information about the user's investments."
+          ]
+        },
+        {
+          "name": "poolTokenAccountA",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "The pool's token accounts from which rewards will be distributed."
+          ]
+        },
+        {
+          "name": "poolTokenAccountB",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userTokenAccountMintA",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "The user's token accounts where the rewards will be deposited."
+          ]
+        },
+        {
+          "name": "userTokenAccountMintB",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authorityTokenAccountA",
+          "isMut": true,
+          "isSigner": false,
+          "isOptional": true,
+          "docs": [
+            "Optional: Authority token accounts for royalties",
+            "If royalties are requested, these accounts will receive the royalty portion."
+          ]
+        },
+        {
+          "name": "authorityTokenAccountB",
+          "isMut": true,
+          "isSigner": false,
+          "isOptional": true
+        }
+      ],
+      "args": [
+        {
+          "name": "requestRoyalty",
+          "type": "bool"
+        }
+      ]
     }
   ],
   "accounts": [
+    {
+      "name": "alphaVaultPool",
+      "docs": [
+        "PDA [\"pool_\", token_a_mint, token_b_mint]",
+        "The `AlphaVaultPool` struct represents a liquidity pool with allocation, vesting, and configuration settings.",
+        "This pool is associated with a Whirlpool instance and manages rewards, claimable amounts, and status."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "bump",
+            "docs": [
+              "PDA bump seed."
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "admin",
+            "docs": [
+              "Administrator of the pool."
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "tradingFee",
+            "docs": [
+              "Reward for cranking operations, measured in basis points (bps)."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "crankRewardBps",
+            "docs": [
+              "Reward for cranking operations, measured in basis points (bps)."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "totalRaised",
+            "docs": [
+              "Total raised SOL."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "targetRaise",
+            "docs": [
+              "Target amount of SOL to raise in the pool."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "totalSupply",
+            "docs": [
+              "Total token supply in the pool."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "claimableAmountMintA",
+            "docs": [
+              "Amount of token A that is claimable."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "claimableAmountMintB",
+            "docs": [
+              "Amount of token B that is claimable."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "claimedAmountMintA",
+            "docs": [
+              "Amount of token A that has been claimed."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "claimedAmountMintB",
+            "docs": [
+              "Amount of token B that has been claimed."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "tokenAMint",
+            "docs": [
+              "Mint address of token A."
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "tokenBMint",
+            "docs": [
+              "Mint address of token B."
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "currentRecordNumber",
+            "docs": [
+              "Current record number for tracking operations."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "whirlpool",
+            "docs": [
+              "Associated Whirlpool address."
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "position",
+            "docs": [
+              "The position associated with this pool."
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "feeConfig",
+            "docs": [
+              "The position associated with this pool."
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "poolType",
+            "docs": [
+              "Type of the pool."
+            ],
+            "type": {
+              "defined": "PoolType"
+            }
+          },
+          {
+            "name": "raiseType",
+            "docs": [
+              "Type of raise mechanism used."
+            ],
+            "type": {
+              "defined": "RaiseType"
+            }
+          },
+          {
+            "name": "poolStatus",
+            "docs": [
+              "Current status of the pool."
+            ],
+            "type": {
+              "defined": "PoolStatus"
+            }
+          },
+          {
+            "name": "allocationLpPercent",
+            "docs": [
+              "Percentage of liquidity provider (LP) allocation."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "allocationFundersPercent",
+            "docs": [
+              "Percentage of funders' allocation."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "poolActivationTimestamp",
+            "docs": [
+              "Timestamp representing the expiration date of the pool."
+            ],
+            "type": "u64"
+          }
+        ]
+      }
+    },
     {
       "name": "pool",
       "docs": [
@@ -4888,6 +7257,65 @@ export type Gofundmeme = {
       }
     },
     {
+      "name": "AlphaVaultTokenomics",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "allocationLpPercent",
+            "type": "u16"
+          },
+          {
+            "name": "tradingFee",
+            "type": "u16"
+          },
+          {
+            "name": "allocationFundersPercent",
+            "type": "u16"
+          },
+          {
+            "name": "crankRewardBps",
+            "type": "u16"
+          },
+          {
+            "name": "targetRaise",
+            "type": "u64"
+          },
+          {
+            "name": "poolActivationMinutes",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "CustomizableParams",
+      "docs": [
+        "**Customizable Parameters for the Pool (Serialize & Deserialize)**"
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "tradeFeeNumerator",
+            "type": "u32"
+          },
+          {
+            "name": "activationPoint",
+            "type": "u64"
+          },
+          {
+            "name": "hasAlphaVault",
+            "type": "bool"
+          },
+          {
+            "name": "activationType",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
       "name": "OpenPositionWithMetadataBumps",
       "type": {
         "kind": "struct",
@@ -5222,6 +7650,9 @@ export type Gofundmeme = {
             "name": "FundsTransfered"
           },
           {
+            "name": "DexPoolCreated"
+          },
+          {
             "name": "PositionOpen"
           },
           {
@@ -5240,6 +7671,12 @@ export type Gofundmeme = {
           },
           {
             "name": "Raydium"
+          },
+          {
+            "name": "MeteoraDAMM"
+          },
+          {
+            "name": "MeteoraCLMM"
           }
         ]
       }
@@ -5254,6 +7691,15 @@ export type Gofundmeme = {
           },
           {
             "name": "BondingCurve"
+          },
+          {
+            "name": "Presale"
+          },
+          {
+            "name": "DutchAuction"
+          },
+          {
+            "name": "AlphaVault"
           }
         ]
       }
@@ -5312,561 +7758,566 @@ export type Gofundmeme = {
     },
     {
       "code": 6010,
+      "name": "TargetRaiseTooSmall",
+      "msg": "Target raise is too small. Minimum 6 SOL."
+    },
+    {
+      "code": 6011,
       "name": "Unauthorized",
       "msg": "Unauthorized"
     },
     {
-      "code": 6011,
+      "code": 6012,
       "name": "PoolClosed",
       "msg": "Pool closed"
     },
     {
-      "code": 6012,
+      "code": 6013,
       "name": "RaiseCompleted",
       "msg": "Raise completed"
     },
     {
-      "code": 6013,
+      "code": 6014,
       "name": "ZeroAmount",
       "msg": "Amount can't be zero"
     },
     {
-      "code": 6014,
+      "code": 6015,
       "name": "InvalidBump",
       "msg": "Invalid bump"
     },
     {
-      "code": 6015,
+      "code": 6016,
       "name": "SameAdminKey",
       "msg": "Same admin key"
     },
     {
-      "code": 6016,
+      "code": 6017,
       "name": "InvalidTreasury",
       "msg": "Invalid treasury"
     },
     {
-      "code": 6017,
+      "code": 6018,
       "name": "AlreadyClaimedRecordNumber",
       "msg": "Already claimed for that record number"
     },
     {
-      "code": 6018,
+      "code": 6019,
       "name": "InvalidRecordNumber",
       "msg": "Invalid record number"
     },
     {
-      "code": 6019,
+      "code": 6020,
       "name": "InvalidCranker",
       "msg": "Invalid cranker"
     },
     {
-      "code": 6020,
+      "code": 6021,
       "name": "MissingMemberAccounts",
       "msg": "Missing member account"
     },
     {
-      "code": 6021,
+      "code": 6022,
       "name": "InvalidNumberOfRemainingAccounts",
       "msg": "Missing some remaining accounts"
     },
     {
-      "code": 6022,
+      "code": 6023,
       "name": "InvalidRewardVault",
       "msg": "Invalid reward vault"
     },
     {
-      "code": 6023,
+      "code": 6024,
       "name": "ClaimInProcess",
       "msg": "Claim in process"
     },
     {
-      "code": 6024,
+      "code": 6025,
       "name": "AccountNotFound",
       "msg": "Account was not found"
     },
     {
-      "code": 6025,
+      "code": 6026,
       "name": "InvalidUserAccount",
       "msg": "Invalid user account"
     },
     {
-      "code": 6026,
+      "code": 6027,
       "name": "DefaultUserAccountCannotClaim",
       "msg": "Default user account cannot claim, only harvest"
     },
     {
-      "code": 6027,
+      "code": 6028,
       "name": "HarvestUnavailableWithStakingNetwork",
       "msg": "Harvest Unavailable With Staking Network Enabled"
     },
     {
-      "code": 6028,
+      "code": 6029,
       "name": "InvalidPoolForUserAccount",
       "msg": "Invalid pool for user account"
     },
     {
-      "code": 6029,
+      "code": 6030,
       "name": "InvalidTokenAccountOwner",
       "msg": "Invalid royalty token account"
     },
     {
-      "code": 6030,
+      "code": 6031,
       "name": "NoRoyaltiesEnabled",
       "msg": "Royalties are not enabled for this user"
     },
     {
-      "code": 6031,
+      "code": 6032,
       "name": "RoyaltyPercentageZero",
       "msg": "Royalty percentage is set to zero"
     },
     {
-      "code": 6032,
+      "code": 6033,
       "name": "CannotClaimOwnRoyalty",
       "msg": "Cannot claim own royalty"
     },
     {
-      "code": 6033,
+      "code": 6034,
       "name": "MissingRoyaltyTokenAccounts",
       "msg": "Missing royalty token accounts"
     },
     {
-      "code": 6034,
+      "code": 6035,
       "name": "InvalidRoyaltyPercent",
       "msg": "Invalid royalty percent; must be between 0 and 100"
     },
     {
-      "code": 6035,
+      "code": 6036,
       "name": "UserAlreadyInLookupTable",
       "msg": "User account already exists in the lookup table."
     },
     {
-      "code": 6036,
+      "code": 6037,
       "name": "UserNotFoundInLookupTable",
       "msg": "User account not found in the lookup table."
     },
     {
-      "code": 6037,
+      "code": 6038,
       "name": "InvalidFallbackLookupTable",
       "msg": "Invalid fallback lookup table."
     },
     {
-      "code": 6038,
+      "code": 6039,
       "name": "InvalidCurrentLookupTable",
       "msg": "Invalid current lookup table."
     },
     {
-      "code": 6039,
+      "code": 6040,
       "name": "InvalidLookupTable",
       "msg": "Invalid user account lookup table."
     },
     {
-      "code": 6040,
+      "code": 6041,
       "name": "InvalidLookupTableManager",
       "msg": "Invalid user account lookup table manager."
     },
     {
-      "code": 6041,
+      "code": 6042,
       "name": "InvalidPoolClaimableLookupTable",
       "msg": "Invalid pool claimable lookup table."
     },
     {
-      "code": 6042,
+      "code": 6043,
       "name": "InvalidPoolVestingTable",
       "msg": "Invalid pool vesting table."
     },
     {
-      "code": 6043,
+      "code": 6044,
       "name": "InvalidPoolClaimableLookupTableManager",
       "msg": "Invalid pool claimable lookup table manager."
     },
     {
-      "code": 6044,
+      "code": 6045,
       "name": "IncorrectOwner",
       "msg": "The program is not the owner of the PDA account."
     },
     {
-      "code": 6045,
+      "code": 6046,
       "name": "AccountDataBorrowFailed",
       "msg": "Failed to borrow account data."
     },
     {
-      "code": 6046,
+      "code": 6047,
       "name": "MissingDefaultUserAccount",
       "msg": "Missing default user account"
     },
     {
-      "code": 6047,
+      "code": 6048,
       "name": "Overflow",
       "msg": "You have invested too much sir."
     },
     {
-      "code": 6048,
+      "code": 6049,
       "name": "InvalidHours",
       "msg": "You have selected a vestion option that does not exist"
     },
     {
-      "code": 6049,
+      "code": 6050,
       "name": "TargetRaiseReached",
       "msg": "The target raise was reached, you cannot defund now."
     },
     {
-      "code": 6050,
+      "code": 6051,
       "name": "InsufficientFunds",
       "msg": "Your balance is insufficient for this defund."
     },
     {
-      "code": 6051,
+      "code": 6052,
       "name": "CannotDefund",
       "msg": "Your cannot defund at this time."
     },
     {
-      "code": 6052,
+      "code": 6053,
       "name": "InvalidTotalPercent",
       "msg": "The total allocation percentages must equal 100."
     },
     {
-      "code": 6053,
+      "code": 6054,
       "name": "InvalidPoolTokenAccountOwner",
       "msg": "Invalid pool token account"
     },
     {
-      "code": 6054,
+      "code": 6055,
       "name": "CannotUpdateTokenomics",
       "msg": "Cannot update tokenomics."
     },
     {
-      "code": 6055,
+      "code": 6056,
       "name": "MismatchedAllocationLength",
       "msg": "Allocation percent, name, and wallet vectors must have the same length."
     },
     {
-      "code": 6056,
+      "code": 6057,
       "name": "ExceededMaxAllocations",
       "msg": "The number of allocations exceeds the maximum allowed."
     },
     {
-      "code": 6057,
+      "code": 6058,
       "name": "LowLpPercent",
       "msg": "The LP allocation percentage must be greater than 5%."
     },
     {
-      "code": 6058,
+      "code": 6059,
       "name": "LowFundersPercent",
       "msg": "The funders allocation percentage must be greater than 5%."
     },
     {
-      "code": 6059,
+      "code": 6060,
       "name": "DuplicateWalletFound",
       "msg": "Duplicate allocation wallets are not allowed"
     },
     {
-      "code": 6060,
+      "code": 6061,
       "name": "HoursEmpty",
       "msg": "Hours vector is empty."
     },
     {
-      "code": 6061,
+      "code": 6062,
       "name": "MultiplierEmpty",
       "msg": "Multiplier vector is empty."
     },
     {
-      "code": 6062,
+      "code": 6063,
       "name": "HoursExceedMaxVestingOptions",
       "msg": "Hours vector exceeds the maximum allowed vesting options."
     },
     {
-      "code": 6063,
+      "code": 6064,
       "name": "MultiplierExceedMaxVestingOptions",
       "msg": "Multiplier vector exceeds the maximum allowed vesting options."
     },
     {
-      "code": 6064,
+      "code": 6065,
       "name": "HoursMultiplierLengthMismatch",
       "msg": "Hours and multiplier vectors must have the same length."
     },
     {
-      "code": 6065,
+      "code": 6066,
       "name": "FirstMultiplierNotOne",
       "msg": "The first multiplier must be equal to 1.00."
     },
     {
-      "code": 6066,
+      "code": 6067,
       "name": "HoursNotAscendingOrder",
       "msg": "Hours are not in ascending order."
     },
     {
-      "code": 6067,
+      "code": 6068,
       "name": "MultiplierNotAscendingOrder",
       "msg": "Multiplier is not in ascending order."
     },
     {
-      "code": 6068,
+      "code": 6069,
       "name": "CanDefundMustBeTrueIfNoExpiration",
       "msg": "If there is no expiration date, can_defund must be true."
     },
     {
-      "code": 6069,
+      "code": 6070,
       "name": "HourDurationMustBeZeroIfNoExpiration",
       "msg": "If there is no expiration date, hour_duration must be 0."
     },
     {
-      "code": 6070,
+      "code": 6071,
       "name": "HourDurationMustBeGreaterThanOneIfHasExpiration",
       "msg": "If there is an expiration date, hour_duration must be greater than 1."
     },
     {
-      "code": 6071,
+      "code": 6072,
       "name": "NoExpirationDate",
       "msg": "Pool does not have an expiration date set."
     },
     {
-      "code": 6072,
+      "code": 6073,
       "name": "TargetRaiseMet",
       "msg": "The total raised amount is greater than or equal to the target raise."
     },
     {
-      "code": 6073,
+      "code": 6074,
       "name": "PoolNotRaising",
       "msg": "The pool is not in the Raising status."
     },
     {
-      "code": 6074,
+      "code": 6075,
       "name": "PoolNotExpired",
       "msg": "The pool has not yet reached its expiration timestamp."
     },
     {
-      "code": 6075,
+      "code": 6076,
       "name": "InvalidInitialVl",
       "msg": "The initial virtual liquidity must be greater than 0"
     },
     {
-      "code": 6076,
+      "code": 6077,
       "name": "InvalidCurveConstant",
       "msg": "The curve constant must be greater than 0"
     },
     {
-      "code": 6077,
+      "code": 6078,
       "name": "CurveConstantTooHigh",
       "msg": "The curve constant is too high"
     },
     {
-      "code": 6078,
+      "code": 6079,
       "name": "CalculationOverflow",
       "msg": "Calculation overflow occurred during processing"
     },
     {
-      "code": 6079,
+      "code": 6080,
       "name": "ExceededMaxPrice",
       "msg": "The price exceeds the maximum allowed limit for this transaction"
     },
     {
-      "code": 6080,
+      "code": 6081,
       "name": "SlippageExceeded",
       "msg": "The provided slippage tolerance was exceeded"
     },
     {
-      "code": 6081,
+      "code": 6082,
       "name": "InvalidStakingNetworkPDA",
       "msg": "Invalid Staking Network PDA"
     },
     {
-      "code": 6082,
+      "code": 6083,
       "name": "UnstakeNotAllowed",
       "msg": "Your staking cycle is still active, wait for your 7 day unstaking window to begin."
     },
     {
-      "code": 6083,
+      "code": 6084,
       "name": "InsufficientStakedTokens",
       "msg": "You are trying to unstake tokens you don't have."
     },
     {
-      "code": 6084,
+      "code": 6085,
       "name": "ClaimCooldown",
       "msg": "Claim not allowed yet. Please wait for the cooldown period."
     },
     {
-      "code": 6085,
+      "code": 6086,
       "name": "NetworkSyncCooldown",
       "msg": "Network syncing not allowed yet. Please wait for the cooldown period."
     },
     {
-      "code": 6086,
+      "code": 6087,
       "name": "InsufficientDisposableSol",
       "msg": "Insufficient SOL to syncing the network. Min 1 SOL to pending to sync is required."
     },
     {
-      "code": 6087,
+      "code": 6088,
       "name": "InvalidStakerAccountManager",
       "msg": "Invalid Staker Account Manager"
     },
     {
-      "code": 6088,
+      "code": 6089,
       "name": "InvalidStakerAccountPDA",
       "msg": "Invalid Staker Account PDA"
     },
     {
-      "code": 6089,
+      "code": 6090,
       "name": "InvalidStakerTokenAccountMint",
       "msg": "Invalid Staker Token Account Mint"
     },
     {
-      "code": 6090,
+      "code": 6091,
       "name": "InvalidStakerTokenAccountOwner",
       "msg": "Invalid Staker Token Account Owner"
     },
     {
-      "code": 6091,
+      "code": 6092,
       "name": "InvalidStakingNetworkTokenAccount",
       "msg": "Invalid Staking Network Token Account"
     },
     {
-      "code": 6092,
+      "code": 6093,
       "name": "InvalidStakingNetworkTokenAccountMint",
       "msg": "Invalid Staking Network Token Account Mint"
     },
     {
-      "code": 6093,
+      "code": 6094,
       "name": "InvalidStakingNetworkTokenAccountOwner",
       "msg": "Invalid Staking Network Token Account Owner"
     },
     {
-      "code": 6094,
+      "code": 6095,
       "name": "InvalidStakerStakingTokenAccountMint",
       "msg": "Invalid Staker Staking Token Account Mint"
     },
     {
-      "code": 6095,
+      "code": 6096,
       "name": "InvalidNetworkStakingTokenAccountOwner",
       "msg": "Invalid Network Staking Token Account Owner"
     },
     {
-      "code": 6096,
+      "code": 6097,
       "name": "InvalidNetworkStakingTokenAccountMint",
       "msg": "Invalid Network Staking Token Account Mint"
     },
     {
-      "code": 6097,
+      "code": 6098,
       "name": "InvalidStakerStakingTokenAccountOwner",
       "msg": "Invalid Staker Staking Token Account Owner"
     },
     {
-      "code": 6098,
+      "code": 6099,
       "name": "NoTokensStaked",
       "msg": "Cannot sync with 0 tokens staked"
     },
     {
-      "code": 6099,
+      "code": 6100,
       "name": "AdminNotCreator",
       "msg": "Admin and creator must be the same."
     },
     {
-      "code": 6100,
+      "code": 6101,
       "name": "InvalidPoolsLookupManagerOwner",
       "msg": "Pools Lookup Manager account is not owned by the program."
     },
     {
-      "code": 6101,
+      "code": 6102,
       "name": "InvalidLookupTableOwner",
       "msg": "Lookup Table account is not owned by the program."
     },
     {
-      "code": 6102,
+      "code": 6103,
       "name": "AuthorityNotCreator",
       "msg": "Authority and creator must be the same."
     },
     {
-      "code": 6103,
+      "code": 6104,
       "name": "InvalidPoolOwner",
       "msg": "Pool must be owned by the program."
     },
     {
-      "code": 6104,
+      "code": 6105,
       "name": "InvalidTokenAMint",
       "msg": "Invalid Token A Mint."
     },
     {
-      "code": 6105,
+      "code": 6106,
       "name": "InvalidTokenBMint",
       "msg": "Invalid Token B Mint."
     },
     {
-      "code": 6106,
+      "code": 6107,
       "name": "InvalidTreasuryOwner",
       "msg": "The Treasury account must be owned by the program."
     },
     {
-      "code": 6107,
+      "code": 6108,
       "name": "InvalidURI",
       "msg": "Invalid URI: URI must be a non-empty valid URL starting with http."
     },
     {
-      "code": 6108,
+      "code": 6109,
       "name": "InvalidName",
       "msg": "Invalid name: Name must be non-empty and no more than 50 characters."
     },
     {
-      "code": 6109,
+      "code": 6110,
       "name": "InvalidSymbol",
       "msg": "Invalid symbol: Symbol must be non-empty and no more than 5 characters."
     },
     {
-      "code": 6110,
+      "code": 6111,
       "name": "InvalidDecimals",
       "msg": "Invalid decimals: Decimals must be between 0 and 9."
     },
     {
-      "code": 6111,
+      "code": 6112,
       "name": "InvalidSupply",
       "msg": "Invalid supply: Supply must be between 100,000 and 100,000,000,000."
     },
     {
-      "code": 6112,
+      "code": 6113,
       "name": "InvalidUserAccountOwner",
       "msg": "User account must be owned by the program."
     },
     {
-      "code": 6113,
+      "code": 6114,
       "name": "InvalidUserPoolsLookupManagerOwner",
       "msg": "User pools lookup manager must be owned by the program."
     },
     {
-      "code": 6114,
+      "code": 6115,
       "name": "InvalidLookupManagerOwner",
       "msg": "Lookup manager must be owned by the program."
     },
     {
-      "code": 6115,
+      "code": 6116,
       "name": "InvalidCurrentLookupTableOwner",
       "msg": "Current lookup table must be owned by the program."
     },
     {
-      "code": 6116,
+      "code": 6117,
       "name": "InvalidStakingNetworkOwner",
       "msg": "Staking network must be owned by the program."
     },
     {
-      "code": 6117,
+      "code": 6118,
       "name": "InvalidStakingNetworkSyncAccountOwner",
       "msg": "Staking network sync account must be owned by the program."
     },
     {
-      "code": 6118,
+      "code": 6119,
       "name": "KYCVerifictionFailed",
       "msg": "KYC verifiction failed."
     },
     {
-      "code": 6119,
+      "code": 6120,
       "name": "DeserializationFailed",
       "msg": "Failed deserialization of the pool"
     },
     {
-      "code": 6120,
+      "code": 6121,
       "name": "InvalidPoolType",
       "msg": "Invalid pool type"
     },
     {
-      "code": 6121,
+      "code": 6122,
       "name": "InvalidTickArrayWhirlpool",
       "msg": "Invalid TickArray Whirlpool."
     }
@@ -6540,22 +8991,7 @@ export const IDL: Gofundmeme = {
           "isSigner": false
         },
         {
-          "name": "lookupManager",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
           "name": "userPoolsLookupManager",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "currentLookupTable",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "fallbackLookupTable",
           "isMut": true,
           "isSigner": false
         },
@@ -9756,9 +12192,2393 @@ export const IDL: Gofundmeme = {
           "type": "u64"
         }
       ]
+    },
+    {
+      "name": "meteoraBcInitPool",
+      "accounts": [
+        {
+          "name": "admin",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "creator",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "tokenAMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenBMint",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "metadata",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "treasuryTokenVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "treasury",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stakingNetwork",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stakingNetworkSyncAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "metadataProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "token",
+          "type": {
+            "defined": "TokenData"
+          }
+        },
+        {
+          "name": "tokenomics",
+          "type": {
+            "defined": "BondingCurveTokenomics"
+          }
+        },
+        {
+          "name": "amountIn",
+          "type": "u64"
+        },
+        {
+          "name": "isDamm",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "meteoraBcCreatePool",
+      "accounts": [
+        {
+          "name": "creator",
+          "isMut": true,
+          "isSigner": true,
+          "docs": [
+            "Signer"
+          ]
+        },
+        {
+          "name": "creatorToken0",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "creatorToken1",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bondingCurvePool",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "poolPositionTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "treasury",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "dammProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "config",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenAMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenBMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aTokenVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bTokenVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVaultLpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVaultLpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVaultLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVaultLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "payerTokenA",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "payerTokenB",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "payerPoolLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "protocolTokenAFee",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "protocolTokenBFee",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "vaultProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "The Token program"
+          ]
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "System program"
+          ]
+        },
+        {
+          "name": "mintMetadata",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "Associated Token program"
+          ]
+        },
+        {
+          "name": "metadataProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "Rent sysvar"
+          ]
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "meteoraBcCreateAndLockEscrow",
+      "accounts": [
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "dammProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bondingCurvePool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "poolTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenBMint",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "treasury",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "treasuryTokenAccount",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lockEscrow",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "payer",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "sourceTokens",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "escrowVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVaultLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVaultLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVaultLpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVaultLpMint",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "syncMeteoraDammPoolStakingNetwork",
+      "accounts": [
+        {
+          "name": "creator",
+          "isMut": true,
+          "isSigner": true,
+          "docs": [
+            "The owner who has control over the user account."
+          ]
+        },
+        {
+          "name": "bondingCurvePool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "poolStakingNetwork",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "The staking network account, derived using seeds."
+          ]
+        },
+        {
+          "name": "networkTokenAccountA",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "The pool's token accounts from which rewards will be distributed.",
+            "CHECK"
+          ]
+        },
+        {
+          "name": "networkTokenAccountB",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "mintA",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "mintB",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "The mint account for the GFM token."
+          ]
+        },
+        {
+          "name": "stakingNetwork",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stakingNetworkWsolAccount",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "The staking network's WSOL account.",
+            "CHECK"
+          ]
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "dammProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lockEscrow",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "sourceTokens",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "escrowVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aTokenVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bTokenVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVaultLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVaultLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVaultLpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVaultLpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userAToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userBToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "vaultProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "The associated token program account."
+          ]
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "maxAmount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "meteoraFlInitPool",
+      "accounts": [
+        {
+          "name": "admin",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "creator",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "tokenAMint",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "tokenBMint",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "userPoolsLookupManager",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "userAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stakingNetworkSyncAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK",
+            "CHECK"
+          ]
+        }
+      ],
+      "args": [
+        {
+          "name": "token",
+          "type": {
+            "defined": "TokenData"
+          }
+        },
+        {
+          "name": "tokenomics",
+          "type": {
+            "defined": "Tokenomics"
+          }
+        },
+        {
+          "name": "amountIn",
+          "type": "u64"
+        },
+        {
+          "name": "hours",
+          "type": "u64"
+        },
+        {
+          "name": "isDamm",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "fairLaunchFundsTransfer",
+      "accounts": [
+        {
+          "name": "admin",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "creator",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "wrappedSolAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "treasury",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "solAddress",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "token0Mint",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "Token_0 mint, the key must smaller then token_1 mint."
+          ]
+        },
+        {
+          "name": "token1Mint",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "Token_1 mint, the key must grater then token_0 mint."
+          ]
+        },
+        {
+          "name": "stakingNetwork",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "The staking network account, derived using seeds."
+          ]
+        },
+        {
+          "name": "stakingNetworkSyncAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "Program to create mint account and mint tokens"
+          ]
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "Program to create an ATA for receiving position NFT"
+          ]
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "meteoraFlCreatePool",
+      "accounts": [
+        {
+          "name": "creator",
+          "isMut": true,
+          "isSigner": true,
+          "docs": [
+            "Signer"
+          ]
+        },
+        {
+          "name": "creatorToken0",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "creatorToken1",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "fairLaunchPool",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "poolPositionTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "treasury",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "dammProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "config",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenAMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenBMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aTokenVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bTokenVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVaultLpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVaultLpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVaultLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVaultLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "payerTokenA",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "payerTokenB",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "payerPoolLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "protocolTokenAFee",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "protocolTokenBFee",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "vaultProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "The Token program"
+          ]
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "System program"
+          ]
+        },
+        {
+          "name": "mintMetadata",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "Associated Token program"
+          ]
+        },
+        {
+          "name": "metadataProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "Rent sysvar"
+          ]
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "meteoraFlCreateAndLockEscrow",
+      "accounts": [
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "dammProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "fairLaunchPool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "poolTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenBMint",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "treasury",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "treasuryTokenAccount",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lockEscrow",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "payer",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "sourceTokens",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "escrowVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVaultLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVaultLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVaultLpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVaultLpMint",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "meteoraDammHarvest",
+      "accounts": [
+        {
+          "name": "creator",
+          "isMut": true,
+          "isSigner": true,
+          "docs": [
+            "The owner who has control over the user account."
+          ]
+        },
+        {
+          "name": "fairLaunchPool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "poolStakingNetwork",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "The staking network account, derived using seeds.",
+            "CHECK"
+          ]
+        },
+        {
+          "name": "networkTokenAccountA",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "The pool's token accounts from which rewards will be distributed.",
+            "CHECK"
+          ]
+        },
+        {
+          "name": "networkTokenAccountB",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "mintA",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "mintB",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "The mint account for the GFM token."
+          ]
+        },
+        {
+          "name": "stakingNetwork",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stakingNetworkWsolAccount",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "The staking network's WSOL account.",
+            "CHECK"
+          ]
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "dammProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lockEscrow",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "sourceTokens",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "escrowVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aTokenVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bTokenVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVaultLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVaultLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVaultLpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVaultLpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userAToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userBToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "vaultProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "The associated token program account."
+          ]
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "maxAmount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "meteoraAvInitPool",
+      "accounts": [
+        {
+          "name": "admin",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "creator",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "tokenAMint",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "tokenBMint",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "feeConfig",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK",
+            "CHECK"
+          ]
+        },
+        {
+          "name": "userPoolsLookupManager",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stakingNetworkSyncAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK",
+            "CHECK"
+          ]
+        }
+      ],
+      "args": [
+        {
+          "name": "token",
+          "type": {
+            "defined": "TokenData"
+          }
+        },
+        {
+          "name": "tokenomics",
+          "type": {
+            "defined": "AlphaVaultTokenomics"
+          }
+        },
+        {
+          "name": "amountIn",
+          "type": "u64"
+        },
+        {
+          "name": "isDamm",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "avFundsTransfer",
+      "accounts": [
+        {
+          "name": "admin",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "creator",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "wrappedSolAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "treasury",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "solAddress",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "token0Mint",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "Token_0 mint, the key must smaller then token_1 mint."
+          ]
+        },
+        {
+          "name": "token1Mint",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "Token_1 mint, the key must grater then token_0 mint."
+          ]
+        },
+        {
+          "name": "stakingNetwork",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "The staking network account, derived using seeds."
+          ]
+        },
+        {
+          "name": "stakingNetworkSyncAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "Program to create mint account and mint tokens"
+          ]
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "Program to create an ATA for receiving position NFT"
+          ]
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "meteoraAvCreatePool",
+      "accounts": [
+        {
+          "name": "creator",
+          "isMut": true,
+          "isSigner": true,
+          "docs": [
+            "Signer"
+          ]
+        },
+        {
+          "name": "creatorToken0",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "creatorToken1",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "alphaVaultPool",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "poolPositionTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "treasury",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "dammProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "config",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenAMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenBMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aTokenVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bTokenVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVaultLpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVaultLpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVaultLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVaultLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "payerTokenB",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "payerTokenA",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "payerPoolLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "protocolTokenAFee",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "protocolTokenBFee",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "vaultProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "The Token program"
+          ]
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "System program"
+          ]
+        },
+        {
+          "name": "mintMetadata",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "Associated Token program"
+          ]
+        },
+        {
+          "name": "metadataProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "Rent sysvar"
+          ]
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "meteoraAvCreateAndLockEscrow",
+      "accounts": [
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "dammProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "alphaVaultPool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "poolTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenBMint",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "treasury",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "treasuryTokenAccount",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lockEscrow",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "payer",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "sourceTokens",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "escrowVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVaultLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVaultLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVaultLpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVaultLpMint",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "setupAvVesting",
+      "accounts": [
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "admin",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "launchedPoolsLookupManager",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "poolVestingTable",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "treasury",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenMint",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "treasuryTokenAccount",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "poolTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "meteoraAvDammHarvest",
+      "accounts": [
+        {
+          "name": "creator",
+          "isMut": true,
+          "isSigner": true,
+          "docs": [
+            "The owner who has control over the user account."
+          ]
+        },
+        {
+          "name": "alphaVaultPool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "poolStakingNetwork",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "The staking network account, derived using seeds.",
+            "CHECK"
+          ]
+        },
+        {
+          "name": "networkTokenAccountA",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "The pool's token accounts from which rewards will be distributed.",
+            "CHECK"
+          ]
+        },
+        {
+          "name": "networkTokenAccountB",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "mintA",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "mintB",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "The mint account for the GFM token."
+          ]
+        },
+        {
+          "name": "stakingNetwork",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stakingNetworkWsolAccount",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "The staking network's WSOL account.",
+            "CHECK"
+          ]
+        },
+        {
+          "name": "clock",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "dammProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "lockEscrow",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "sourceTokens",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "escrowVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aTokenVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bTokenVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVaultLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVaultLp",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "aVaultLpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "bVaultLpMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userAToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userBToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "vaultProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "The associated token program account."
+          ]
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "maxAmount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "avMultiClaim",
+      "accounts": [
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "The token program used for transferring tokens."
+          ]
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "The system program for basic Solana operations."
+          ]
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true,
+          "docs": [
+            "The signer initiating the transaction."
+          ]
+        },
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "The pool from which the rewards are claimed.",
+            "This pool is identified by a unique set of seeds derived from its token mints."
+          ]
+        },
+        {
+          "name": "userAccount",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "The user account for whom the claim is made.",
+            "This account is associated with the pool and holds information about the user's investments."
+          ]
+        },
+        {
+          "name": "poolTokenAccountA",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "The pool's token accounts from which rewards will be distributed."
+          ]
+        },
+        {
+          "name": "poolTokenAccountB",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userTokenAccountMintA",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "The user's token accounts where the rewards will be deposited."
+          ]
+        },
+        {
+          "name": "userTokenAccountMintB",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authorityTokenAccountA",
+          "isMut": true,
+          "isSigner": false,
+          "isOptional": true,
+          "docs": [
+            "Optional: Authority token accounts for royalties",
+            "If royalties are requested, these accounts will receive the royalty portion."
+          ]
+        },
+        {
+          "name": "authorityTokenAccountB",
+          "isMut": true,
+          "isSigner": false,
+          "isOptional": true
+        }
+      ],
+      "args": [
+        {
+          "name": "requestRoyalty",
+          "type": "bool"
+        }
+      ]
     }
   ],
   "accounts": [
+    {
+      "name": "alphaVaultPool",
+      "docs": [
+        "PDA [\"pool_\", token_a_mint, token_b_mint]",
+        "The `AlphaVaultPool` struct represents a liquidity pool with allocation, vesting, and configuration settings.",
+        "This pool is associated with a Whirlpool instance and manages rewards, claimable amounts, and status."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "bump",
+            "docs": [
+              "PDA bump seed."
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "admin",
+            "docs": [
+              "Administrator of the pool."
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "tradingFee",
+            "docs": [
+              "Reward for cranking operations, measured in basis points (bps)."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "crankRewardBps",
+            "docs": [
+              "Reward for cranking operations, measured in basis points (bps)."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "totalRaised",
+            "docs": [
+              "Total raised SOL."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "targetRaise",
+            "docs": [
+              "Target amount of SOL to raise in the pool."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "totalSupply",
+            "docs": [
+              "Total token supply in the pool."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "claimableAmountMintA",
+            "docs": [
+              "Amount of token A that is claimable."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "claimableAmountMintB",
+            "docs": [
+              "Amount of token B that is claimable."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "claimedAmountMintA",
+            "docs": [
+              "Amount of token A that has been claimed."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "claimedAmountMintB",
+            "docs": [
+              "Amount of token B that has been claimed."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "tokenAMint",
+            "docs": [
+              "Mint address of token A."
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "tokenBMint",
+            "docs": [
+              "Mint address of token B."
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "currentRecordNumber",
+            "docs": [
+              "Current record number for tracking operations."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "whirlpool",
+            "docs": [
+              "Associated Whirlpool address."
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "position",
+            "docs": [
+              "The position associated with this pool."
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "feeConfig",
+            "docs": [
+              "The position associated with this pool."
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "poolType",
+            "docs": [
+              "Type of the pool."
+            ],
+            "type": {
+              "defined": "PoolType"
+            }
+          },
+          {
+            "name": "raiseType",
+            "docs": [
+              "Type of raise mechanism used."
+            ],
+            "type": {
+              "defined": "RaiseType"
+            }
+          },
+          {
+            "name": "poolStatus",
+            "docs": [
+              "Current status of the pool."
+            ],
+            "type": {
+              "defined": "PoolStatus"
+            }
+          },
+          {
+            "name": "allocationLpPercent",
+            "docs": [
+              "Percentage of liquidity provider (LP) allocation."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "allocationFundersPercent",
+            "docs": [
+              "Percentage of funders' allocation."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "poolActivationTimestamp",
+            "docs": [
+              "Timestamp representing the expiration date of the pool."
+            ],
+            "type": "u64"
+          }
+        ]
+      }
+    },
     {
       "name": "pool",
       "docs": [
@@ -10763,6 +15583,65 @@ export const IDL: Gofundmeme = {
       }
     },
     {
+      "name": "AlphaVaultTokenomics",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "allocationLpPercent",
+            "type": "u16"
+          },
+          {
+            "name": "tradingFee",
+            "type": "u16"
+          },
+          {
+            "name": "allocationFundersPercent",
+            "type": "u16"
+          },
+          {
+            "name": "crankRewardBps",
+            "type": "u16"
+          },
+          {
+            "name": "targetRaise",
+            "type": "u64"
+          },
+          {
+            "name": "poolActivationMinutes",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "CustomizableParams",
+      "docs": [
+        "**Customizable Parameters for the Pool (Serialize & Deserialize)**"
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "tradeFeeNumerator",
+            "type": "u32"
+          },
+          {
+            "name": "activationPoint",
+            "type": "u64"
+          },
+          {
+            "name": "hasAlphaVault",
+            "type": "bool"
+          },
+          {
+            "name": "activationType",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
       "name": "OpenPositionWithMetadataBumps",
       "type": {
         "kind": "struct",
@@ -11097,6 +15976,9 @@ export const IDL: Gofundmeme = {
             "name": "FundsTransfered"
           },
           {
+            "name": "DexPoolCreated"
+          },
+          {
             "name": "PositionOpen"
           },
           {
@@ -11115,6 +15997,12 @@ export const IDL: Gofundmeme = {
           },
           {
             "name": "Raydium"
+          },
+          {
+            "name": "MeteoraDAMM"
+          },
+          {
+            "name": "MeteoraCLMM"
           }
         ]
       }
@@ -11129,6 +16017,15 @@ export const IDL: Gofundmeme = {
           },
           {
             "name": "BondingCurve"
+          },
+          {
+            "name": "Presale"
+          },
+          {
+            "name": "DutchAuction"
+          },
+          {
+            "name": "AlphaVault"
           }
         ]
       }
@@ -11187,561 +16084,566 @@ export const IDL: Gofundmeme = {
     },
     {
       "code": 6010,
+      "name": "TargetRaiseTooSmall",
+      "msg": "Target raise is too small. Minimum 6 SOL."
+    },
+    {
+      "code": 6011,
       "name": "Unauthorized",
       "msg": "Unauthorized"
     },
     {
-      "code": 6011,
+      "code": 6012,
       "name": "PoolClosed",
       "msg": "Pool closed"
     },
     {
-      "code": 6012,
+      "code": 6013,
       "name": "RaiseCompleted",
       "msg": "Raise completed"
     },
     {
-      "code": 6013,
+      "code": 6014,
       "name": "ZeroAmount",
       "msg": "Amount can't be zero"
     },
     {
-      "code": 6014,
+      "code": 6015,
       "name": "InvalidBump",
       "msg": "Invalid bump"
     },
     {
-      "code": 6015,
+      "code": 6016,
       "name": "SameAdminKey",
       "msg": "Same admin key"
     },
     {
-      "code": 6016,
+      "code": 6017,
       "name": "InvalidTreasury",
       "msg": "Invalid treasury"
     },
     {
-      "code": 6017,
+      "code": 6018,
       "name": "AlreadyClaimedRecordNumber",
       "msg": "Already claimed for that record number"
     },
     {
-      "code": 6018,
+      "code": 6019,
       "name": "InvalidRecordNumber",
       "msg": "Invalid record number"
     },
     {
-      "code": 6019,
+      "code": 6020,
       "name": "InvalidCranker",
       "msg": "Invalid cranker"
     },
     {
-      "code": 6020,
+      "code": 6021,
       "name": "MissingMemberAccounts",
       "msg": "Missing member account"
     },
     {
-      "code": 6021,
+      "code": 6022,
       "name": "InvalidNumberOfRemainingAccounts",
       "msg": "Missing some remaining accounts"
     },
     {
-      "code": 6022,
+      "code": 6023,
       "name": "InvalidRewardVault",
       "msg": "Invalid reward vault"
     },
     {
-      "code": 6023,
+      "code": 6024,
       "name": "ClaimInProcess",
       "msg": "Claim in process"
     },
     {
-      "code": 6024,
+      "code": 6025,
       "name": "AccountNotFound",
       "msg": "Account was not found"
     },
     {
-      "code": 6025,
+      "code": 6026,
       "name": "InvalidUserAccount",
       "msg": "Invalid user account"
     },
     {
-      "code": 6026,
+      "code": 6027,
       "name": "DefaultUserAccountCannotClaim",
       "msg": "Default user account cannot claim, only harvest"
     },
     {
-      "code": 6027,
+      "code": 6028,
       "name": "HarvestUnavailableWithStakingNetwork",
       "msg": "Harvest Unavailable With Staking Network Enabled"
     },
     {
-      "code": 6028,
+      "code": 6029,
       "name": "InvalidPoolForUserAccount",
       "msg": "Invalid pool for user account"
     },
     {
-      "code": 6029,
+      "code": 6030,
       "name": "InvalidTokenAccountOwner",
       "msg": "Invalid royalty token account"
     },
     {
-      "code": 6030,
+      "code": 6031,
       "name": "NoRoyaltiesEnabled",
       "msg": "Royalties are not enabled for this user"
     },
     {
-      "code": 6031,
+      "code": 6032,
       "name": "RoyaltyPercentageZero",
       "msg": "Royalty percentage is set to zero"
     },
     {
-      "code": 6032,
+      "code": 6033,
       "name": "CannotClaimOwnRoyalty",
       "msg": "Cannot claim own royalty"
     },
     {
-      "code": 6033,
+      "code": 6034,
       "name": "MissingRoyaltyTokenAccounts",
       "msg": "Missing royalty token accounts"
     },
     {
-      "code": 6034,
+      "code": 6035,
       "name": "InvalidRoyaltyPercent",
       "msg": "Invalid royalty percent; must be between 0 and 100"
     },
     {
-      "code": 6035,
+      "code": 6036,
       "name": "UserAlreadyInLookupTable",
       "msg": "User account already exists in the lookup table."
     },
     {
-      "code": 6036,
+      "code": 6037,
       "name": "UserNotFoundInLookupTable",
       "msg": "User account not found in the lookup table."
     },
     {
-      "code": 6037,
+      "code": 6038,
       "name": "InvalidFallbackLookupTable",
       "msg": "Invalid fallback lookup table."
     },
     {
-      "code": 6038,
+      "code": 6039,
       "name": "InvalidCurrentLookupTable",
       "msg": "Invalid current lookup table."
     },
     {
-      "code": 6039,
+      "code": 6040,
       "name": "InvalidLookupTable",
       "msg": "Invalid user account lookup table."
     },
     {
-      "code": 6040,
+      "code": 6041,
       "name": "InvalidLookupTableManager",
       "msg": "Invalid user account lookup table manager."
     },
     {
-      "code": 6041,
+      "code": 6042,
       "name": "InvalidPoolClaimableLookupTable",
       "msg": "Invalid pool claimable lookup table."
     },
     {
-      "code": 6042,
+      "code": 6043,
       "name": "InvalidPoolVestingTable",
       "msg": "Invalid pool vesting table."
     },
     {
-      "code": 6043,
+      "code": 6044,
       "name": "InvalidPoolClaimableLookupTableManager",
       "msg": "Invalid pool claimable lookup table manager."
     },
     {
-      "code": 6044,
+      "code": 6045,
       "name": "IncorrectOwner",
       "msg": "The program is not the owner of the PDA account."
     },
     {
-      "code": 6045,
+      "code": 6046,
       "name": "AccountDataBorrowFailed",
       "msg": "Failed to borrow account data."
     },
     {
-      "code": 6046,
+      "code": 6047,
       "name": "MissingDefaultUserAccount",
       "msg": "Missing default user account"
     },
     {
-      "code": 6047,
+      "code": 6048,
       "name": "Overflow",
       "msg": "You have invested too much sir."
     },
     {
-      "code": 6048,
+      "code": 6049,
       "name": "InvalidHours",
       "msg": "You have selected a vestion option that does not exist"
     },
     {
-      "code": 6049,
+      "code": 6050,
       "name": "TargetRaiseReached",
       "msg": "The target raise was reached, you cannot defund now."
     },
     {
-      "code": 6050,
+      "code": 6051,
       "name": "InsufficientFunds",
       "msg": "Your balance is insufficient for this defund."
     },
     {
-      "code": 6051,
+      "code": 6052,
       "name": "CannotDefund",
       "msg": "Your cannot defund at this time."
     },
     {
-      "code": 6052,
+      "code": 6053,
       "name": "InvalidTotalPercent",
       "msg": "The total allocation percentages must equal 100."
     },
     {
-      "code": 6053,
+      "code": 6054,
       "name": "InvalidPoolTokenAccountOwner",
       "msg": "Invalid pool token account"
     },
     {
-      "code": 6054,
+      "code": 6055,
       "name": "CannotUpdateTokenomics",
       "msg": "Cannot update tokenomics."
     },
     {
-      "code": 6055,
+      "code": 6056,
       "name": "MismatchedAllocationLength",
       "msg": "Allocation percent, name, and wallet vectors must have the same length."
     },
     {
-      "code": 6056,
+      "code": 6057,
       "name": "ExceededMaxAllocations",
       "msg": "The number of allocations exceeds the maximum allowed."
     },
     {
-      "code": 6057,
+      "code": 6058,
       "name": "LowLpPercent",
       "msg": "The LP allocation percentage must be greater than 5%."
     },
     {
-      "code": 6058,
+      "code": 6059,
       "name": "LowFundersPercent",
       "msg": "The funders allocation percentage must be greater than 5%."
     },
     {
-      "code": 6059,
+      "code": 6060,
       "name": "DuplicateWalletFound",
       "msg": "Duplicate allocation wallets are not allowed"
     },
     {
-      "code": 6060,
+      "code": 6061,
       "name": "HoursEmpty",
       "msg": "Hours vector is empty."
     },
     {
-      "code": 6061,
+      "code": 6062,
       "name": "MultiplierEmpty",
       "msg": "Multiplier vector is empty."
     },
     {
-      "code": 6062,
+      "code": 6063,
       "name": "HoursExceedMaxVestingOptions",
       "msg": "Hours vector exceeds the maximum allowed vesting options."
     },
     {
-      "code": 6063,
+      "code": 6064,
       "name": "MultiplierExceedMaxVestingOptions",
       "msg": "Multiplier vector exceeds the maximum allowed vesting options."
     },
     {
-      "code": 6064,
+      "code": 6065,
       "name": "HoursMultiplierLengthMismatch",
       "msg": "Hours and multiplier vectors must have the same length."
     },
     {
-      "code": 6065,
+      "code": 6066,
       "name": "FirstMultiplierNotOne",
       "msg": "The first multiplier must be equal to 1.00."
     },
     {
-      "code": 6066,
+      "code": 6067,
       "name": "HoursNotAscendingOrder",
       "msg": "Hours are not in ascending order."
     },
     {
-      "code": 6067,
+      "code": 6068,
       "name": "MultiplierNotAscendingOrder",
       "msg": "Multiplier is not in ascending order."
     },
     {
-      "code": 6068,
+      "code": 6069,
       "name": "CanDefundMustBeTrueIfNoExpiration",
       "msg": "If there is no expiration date, can_defund must be true."
     },
     {
-      "code": 6069,
+      "code": 6070,
       "name": "HourDurationMustBeZeroIfNoExpiration",
       "msg": "If there is no expiration date, hour_duration must be 0."
     },
     {
-      "code": 6070,
+      "code": 6071,
       "name": "HourDurationMustBeGreaterThanOneIfHasExpiration",
       "msg": "If there is an expiration date, hour_duration must be greater than 1."
     },
     {
-      "code": 6071,
+      "code": 6072,
       "name": "NoExpirationDate",
       "msg": "Pool does not have an expiration date set."
     },
     {
-      "code": 6072,
+      "code": 6073,
       "name": "TargetRaiseMet",
       "msg": "The total raised amount is greater than or equal to the target raise."
     },
     {
-      "code": 6073,
+      "code": 6074,
       "name": "PoolNotRaising",
       "msg": "The pool is not in the Raising status."
     },
     {
-      "code": 6074,
+      "code": 6075,
       "name": "PoolNotExpired",
       "msg": "The pool has not yet reached its expiration timestamp."
     },
     {
-      "code": 6075,
+      "code": 6076,
       "name": "InvalidInitialVl",
       "msg": "The initial virtual liquidity must be greater than 0"
     },
     {
-      "code": 6076,
+      "code": 6077,
       "name": "InvalidCurveConstant",
       "msg": "The curve constant must be greater than 0"
     },
     {
-      "code": 6077,
+      "code": 6078,
       "name": "CurveConstantTooHigh",
       "msg": "The curve constant is too high"
     },
     {
-      "code": 6078,
+      "code": 6079,
       "name": "CalculationOverflow",
       "msg": "Calculation overflow occurred during processing"
     },
     {
-      "code": 6079,
+      "code": 6080,
       "name": "ExceededMaxPrice",
       "msg": "The price exceeds the maximum allowed limit for this transaction"
     },
     {
-      "code": 6080,
+      "code": 6081,
       "name": "SlippageExceeded",
       "msg": "The provided slippage tolerance was exceeded"
     },
     {
-      "code": 6081,
+      "code": 6082,
       "name": "InvalidStakingNetworkPDA",
       "msg": "Invalid Staking Network PDA"
     },
     {
-      "code": 6082,
+      "code": 6083,
       "name": "UnstakeNotAllowed",
       "msg": "Your staking cycle is still active, wait for your 7 day unstaking window to begin."
     },
     {
-      "code": 6083,
+      "code": 6084,
       "name": "InsufficientStakedTokens",
       "msg": "You are trying to unstake tokens you don't have."
     },
     {
-      "code": 6084,
+      "code": 6085,
       "name": "ClaimCooldown",
       "msg": "Claim not allowed yet. Please wait for the cooldown period."
     },
     {
-      "code": 6085,
+      "code": 6086,
       "name": "NetworkSyncCooldown",
       "msg": "Network syncing not allowed yet. Please wait for the cooldown period."
     },
     {
-      "code": 6086,
+      "code": 6087,
       "name": "InsufficientDisposableSol",
       "msg": "Insufficient SOL to syncing the network. Min 1 SOL to pending to sync is required."
     },
     {
-      "code": 6087,
+      "code": 6088,
       "name": "InvalidStakerAccountManager",
       "msg": "Invalid Staker Account Manager"
     },
     {
-      "code": 6088,
+      "code": 6089,
       "name": "InvalidStakerAccountPDA",
       "msg": "Invalid Staker Account PDA"
     },
     {
-      "code": 6089,
+      "code": 6090,
       "name": "InvalidStakerTokenAccountMint",
       "msg": "Invalid Staker Token Account Mint"
     },
     {
-      "code": 6090,
+      "code": 6091,
       "name": "InvalidStakerTokenAccountOwner",
       "msg": "Invalid Staker Token Account Owner"
     },
     {
-      "code": 6091,
+      "code": 6092,
       "name": "InvalidStakingNetworkTokenAccount",
       "msg": "Invalid Staking Network Token Account"
     },
     {
-      "code": 6092,
+      "code": 6093,
       "name": "InvalidStakingNetworkTokenAccountMint",
       "msg": "Invalid Staking Network Token Account Mint"
     },
     {
-      "code": 6093,
+      "code": 6094,
       "name": "InvalidStakingNetworkTokenAccountOwner",
       "msg": "Invalid Staking Network Token Account Owner"
     },
     {
-      "code": 6094,
+      "code": 6095,
       "name": "InvalidStakerStakingTokenAccountMint",
       "msg": "Invalid Staker Staking Token Account Mint"
     },
     {
-      "code": 6095,
+      "code": 6096,
       "name": "InvalidNetworkStakingTokenAccountOwner",
       "msg": "Invalid Network Staking Token Account Owner"
     },
     {
-      "code": 6096,
+      "code": 6097,
       "name": "InvalidNetworkStakingTokenAccountMint",
       "msg": "Invalid Network Staking Token Account Mint"
     },
     {
-      "code": 6097,
+      "code": 6098,
       "name": "InvalidStakerStakingTokenAccountOwner",
       "msg": "Invalid Staker Staking Token Account Owner"
     },
     {
-      "code": 6098,
+      "code": 6099,
       "name": "NoTokensStaked",
       "msg": "Cannot sync with 0 tokens staked"
     },
     {
-      "code": 6099,
+      "code": 6100,
       "name": "AdminNotCreator",
       "msg": "Admin and creator must be the same."
     },
     {
-      "code": 6100,
+      "code": 6101,
       "name": "InvalidPoolsLookupManagerOwner",
       "msg": "Pools Lookup Manager account is not owned by the program."
     },
     {
-      "code": 6101,
+      "code": 6102,
       "name": "InvalidLookupTableOwner",
       "msg": "Lookup Table account is not owned by the program."
     },
     {
-      "code": 6102,
+      "code": 6103,
       "name": "AuthorityNotCreator",
       "msg": "Authority and creator must be the same."
     },
     {
-      "code": 6103,
+      "code": 6104,
       "name": "InvalidPoolOwner",
       "msg": "Pool must be owned by the program."
     },
     {
-      "code": 6104,
+      "code": 6105,
       "name": "InvalidTokenAMint",
       "msg": "Invalid Token A Mint."
     },
     {
-      "code": 6105,
+      "code": 6106,
       "name": "InvalidTokenBMint",
       "msg": "Invalid Token B Mint."
     },
     {
-      "code": 6106,
+      "code": 6107,
       "name": "InvalidTreasuryOwner",
       "msg": "The Treasury account must be owned by the program."
     },
     {
-      "code": 6107,
+      "code": 6108,
       "name": "InvalidURI",
       "msg": "Invalid URI: URI must be a non-empty valid URL starting with http."
     },
     {
-      "code": 6108,
+      "code": 6109,
       "name": "InvalidName",
       "msg": "Invalid name: Name must be non-empty and no more than 50 characters."
     },
     {
-      "code": 6109,
+      "code": 6110,
       "name": "InvalidSymbol",
       "msg": "Invalid symbol: Symbol must be non-empty and no more than 5 characters."
     },
     {
-      "code": 6110,
+      "code": 6111,
       "name": "InvalidDecimals",
       "msg": "Invalid decimals: Decimals must be between 0 and 9."
     },
     {
-      "code": 6111,
+      "code": 6112,
       "name": "InvalidSupply",
       "msg": "Invalid supply: Supply must be between 100,000 and 100,000,000,000."
     },
     {
-      "code": 6112,
+      "code": 6113,
       "name": "InvalidUserAccountOwner",
       "msg": "User account must be owned by the program."
     },
     {
-      "code": 6113,
+      "code": 6114,
       "name": "InvalidUserPoolsLookupManagerOwner",
       "msg": "User pools lookup manager must be owned by the program."
     },
     {
-      "code": 6114,
+      "code": 6115,
       "name": "InvalidLookupManagerOwner",
       "msg": "Lookup manager must be owned by the program."
     },
     {
-      "code": 6115,
+      "code": 6116,
       "name": "InvalidCurrentLookupTableOwner",
       "msg": "Current lookup table must be owned by the program."
     },
     {
-      "code": 6116,
+      "code": 6117,
       "name": "InvalidStakingNetworkOwner",
       "msg": "Staking network must be owned by the program."
     },
     {
-      "code": 6117,
+      "code": 6118,
       "name": "InvalidStakingNetworkSyncAccountOwner",
       "msg": "Staking network sync account must be owned by the program."
     },
     {
-      "code": 6118,
+      "code": 6119,
       "name": "KYCVerifictionFailed",
       "msg": "KYC verifiction failed."
     },
     {
-      "code": 6119,
+      "code": 6120,
       "name": "DeserializationFailed",
       "msg": "Failed deserialization of the pool"
     },
     {
-      "code": 6120,
+      "code": 6121,
       "name": "InvalidPoolType",
       "msg": "Invalid pool type"
     },
     {
-      "code": 6121,
+      "code": 6122,
       "name": "InvalidTickArrayWhirlpool",
       "msg": "Invalid TickArray Whirlpool."
     }
