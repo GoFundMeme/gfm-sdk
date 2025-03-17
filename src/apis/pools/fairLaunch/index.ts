@@ -1,10 +1,13 @@
 import { PublicKey, Keypair } from "@solana/web3.js";
 import { CreateFairLaunchPayload, CreateFairLaunchProcessPayload, PoolsUtils } from "../../../types";
 import { createFairLaunchProcess, createFairLaunchRequest } from "./createFairLaunchPool";
+import { Gofundmeme } from "../../../IDL";
+import { Program } from "@coral-xyz/anchor";
 
-export const buildFailLaunchApiUtils = async (poolUtils: PoolsUtils) => {
+export const buildFailLaunchApiUtils = async (poolUtils: PoolsUtils, gfmProgram: Program<Gofundmeme>) => {
     const processCreatePool = async (payload: CreateFairLaunchProcessPayload) => {
         const { mintAddress, txid } = await createFairLaunchProcess(payload)
+        await gfmProgram.provider.connection.confirmTransaction(txid, "finalized")
         return {
             mintAddress,
             txid,
@@ -15,7 +18,7 @@ export const buildFailLaunchApiUtils = async (poolUtils: PoolsUtils) => {
     }
 
     const requestCreatePool = async (payload: CreateFairLaunchPayload) => {
-        const resp = await createFairLaunchRequest(payload)
+        const resp = await createFairLaunchRequest(payload, gfmProgram)
         const { transaction, requestId } = resp
 
         return {
