@@ -3,7 +3,9 @@ import Decimal from "decimal.js";
 import BN from "bn.js";
 import { adjustDecimals } from "../utils";
 import { BondingCurvePool } from "../types";
-
+import {
+  Mint,
+} from "@solana/spl-token";
 
 
 export const calculateArea = (
@@ -510,3 +512,74 @@ export function derivePrecision({
 
   return { precisionFactor, tolerance };
 }
+
+
+
+export const getEconomicMetrics = async ({
+  pool,
+  mintB,
+  solRaised,
+}: {
+  pool: BondingCurvePool;
+  mintB: Mint;
+  solRaised?: number;
+}) => {
+  const curveConstant = new Decimal(pool.curveConstant.toString());
+  const curveExponent = new Decimal(pool.curveExponent.toString());
+  const targetRaise = new Decimal(pool.targetRaise.toString()).div(LAMPORTS_PER_SOL); // ✅ FIX: Convert to SOL
+
+  const tradableTokenSupply = new Decimal(pool.initialTokens.toString()).div(
+    new Decimal(10).pow(new Decimal(mintB.decimals))
+  );
+
+  const totalTokenSupply = new Decimal(pool.totalSupply.toString()).div(
+    new Decimal(10).pow(new Decimal(mintB.decimals))
+  );
+
+  // 1️⃣ Use provided solRaised or fallback to pool.currentSol
+  const currentSolRaised = solRaised !== undefined
+    ? new Decimal(solRaised)
+    : new Decimal(pool.currentSol.toString()).div(LAMPORTS_PER_SOL);
+
+  // 2️⃣ Simulate a buy amount of 0.001 SOL
+  const buyAmountSOL = new Decimal(0.001);
+  let lamports = buyAmountSOL.mul(LAMPORTS_PER_SOL);
+
+  // Ensure we don't exceed the raise limit
+  const remainingSol = targetRaise.minus(currentSolRaised);
+  if (lamports.div(LAMPORTS_PER_SOL).greaterThan(remainingSol)) {
+    lamports = remainingSol.mul(LAMPORTS_PER_SOL);
+  }
+
+  // 3️⃣ Calculate tokens issued using bonding curve logic
+  const tokensIssued = getBuyQuote({
+    buySolAmount: lamports.div(LAMPORTS_PER_SOL),
+    curveTargetSol: targetRaise,
+    currentSolRaised: currentSolRaised,
+    tradableTokenSupply,
+    curveConstant,
+    curveExponent,
+  });
+
+  if (tokensIssued.lte(0)) {
+    throw new Error("Error: Tokens received is zero or negative, price calculation is invalid.");
+  }
+
+  // 4️⃣ Calculate Price Per Token (Corrected)
+  const pricePerToken = buyAmountSOL.div(tokensIssued);
+
+  // 5️⃣ Calculate Virtual Liquidity
+  const virtualLiquidity = tradableTokenSupply.times(pricePerToken);
+
+  // 6️⃣ Calculate Market Cap
+  const marketCap = totalTokenSupply.times(pricePerToken);
+
+  const marketCapOnLaunch = targetRaise.div(totalTokenSupply.sub(tradableTokenSupply)).mul(totalTokenSupply)
+
+  return {
+    pricePerToken: pricePerToken.toNumber(),
+    virtualLiquidity: virtualLiquidity.toNumber(),
+    marketCap: marketCap.toNumber(),
+    marketCapOnLaunch: marketCapOnLaunch.toNumber(),
+  };
+};

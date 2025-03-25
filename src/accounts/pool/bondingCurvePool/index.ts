@@ -6,7 +6,7 @@ import { getPoolPDA } from "../../../utils/pdaUtils";
 import { SOL_PUBLIC_KEY } from "../../../constants";
 import { BondingCurvePool } from "../../../types";
 import { Raydium } from "@raydium-io/raydium-sdk-v2";
-import { getQuoteForAmount } from "../../../utils/priceUtils";
+import { getEconomicMetrics, getQuoteForAmount } from "../../../utils/priceUtils";
 import Decimal from "decimal.js";
 import { buildSwapTransaction } from "../../../instructions/bondingCurve/swap_ix_builder";
 import {
@@ -24,6 +24,7 @@ import { buildPoolUnstakingTransaction } from "../../../instructions/poolStaking
 import { buildPoolClaimStakingRewardsTransaction } from "../../../instructions/poolStakingNetwork/pool_staking_claim_ix_builder";
 import { Mint } from "@solana/spl-token";
 import { meteoraDAMMFHarvestMothods } from "../../../instructions/hervest_meteora_damm/harvest";
+import { buildSwapV2Transaction } from "../../../instructions";
 export const buildBondingCurvePoolUtils = ({
   gfmProgram,
   raydium,
@@ -111,10 +112,12 @@ export const buildBondingCurvePoolActions = async ({
     amountInUI,
     slippage,
     funder,
+    v2 = true
   }: {
     amountInUI: Decimal;
     slippage: number;
     funder: PublicKey;
+    v2?: boolean
   }) => {
     await refreshPoolData();
     const quote = await getQuoteForAmount({
@@ -124,6 +127,17 @@ export const buildBondingCurvePoolActions = async ({
       slippage,
       decimals: decinalA,
     });
+    if (v2) {
+      return {
+        quote,
+        transaction: await buildSwapV2Transaction({
+          gfmProgram,
+          funder,
+          pool,
+          quote: quote.quote,
+        }),
+      };
+    }
     return {
       quote,
       transaction: await buildSwapTransaction({
@@ -138,10 +152,12 @@ export const buildBondingCurvePoolActions = async ({
     amountInUI,
     slippage,
     funder,
+    v2 = true
   }: {
     amountInUI: Decimal;
     slippage: number;
     funder: PublicKey;
+    v2?: boolean
   }) => {
     await refreshPoolData();
     const quote = await getQuoteForAmount({
@@ -151,6 +167,17 @@ export const buildBondingCurvePoolActions = async ({
       slippage,
       decimals: decinalB,
     });
+    if (v2) {
+      return {
+        quote,
+        transaction: await buildSwapV2Transaction({
+          gfmProgram,
+          funder,
+          pool,
+          quote: quote.quote,
+        }),
+      };
+    }
     return {
       quote,
       transaction: await buildSwapTransaction({
@@ -266,6 +293,15 @@ export const buildBondingCurvePoolActions = async ({
     return (await getMarketcapInSol(refreshPool)) / pool.totalSupply.div(new BN(10 ** mintB.decimals)).toNumber()
   }
 
+
+  const fetchEconomicMetrics = async ({ refreshPool, solRaised }: { refreshPool?: boolean; solRaised?: number; } = {}) => {
+    if (refreshPool)
+      await refreshPoolData()
+    return getEconomicMetrics({ pool, mintB, solRaised })
+  }
+
+
+
   return {
     mintA,
     mintB,
@@ -277,6 +313,7 @@ export const buildBondingCurvePoolActions = async ({
         fetchBalanceB,
       },
       marketUtils: {
+        fetchEconomicMetrics,
         getVitualPricePerToken: getVitualPricePerToken,
         getMarketCapInSol: getMarketcapInSol
       }
