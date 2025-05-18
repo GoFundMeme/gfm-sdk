@@ -51,22 +51,22 @@ const validateCreatePayload = ({ token, amountIn, targetRaise, campaignDurationH
 
     if (website) {
         if (typeof website !== 'string') throw new Error(`Website extention must be a string`)
-        if (website.length > 100) throw new Error(`Website extention too long (Up to 100 characters)`)
+        if (website.length > 300) throw new Error(`Website extention too long (Up to 300 characters)`)
     }
 
     if (twitter) {
         if (typeof twitter !== 'string') throw new Error(`twitter extention must be a string`)
-        if (twitter.length > 100) throw new Error(`twitter extention too long (Up to 100 characters)`)
+        if (twitter.length > 300) throw new Error(`twitter extention too long (Up to 300 characters)`)
     }
 
     if (discord) {
         if (typeof discord !== 'string') throw new Error(`discord extention must be a string`)
-        if (discord.length > 100) throw new Error(`discord extention too long (Up to 100 characters)`)
+        if (discord.length > 300) throw new Error(`discord extention too long (Up to 300 characters)`)
     }
 
     if (telegram) {
         if (typeof telegram !== 'string') throw new Error(`telegram extention must be a string`)
-        if (telegram.length > 100) throw new Error(`telegram extention too long (Up to 100 characters)`)
+        if (telegram.length > 300) throw new Error(`telegram extention too long (Up to 300 characters)`)
     }
 
     if (!description || typeof description !== 'string') {

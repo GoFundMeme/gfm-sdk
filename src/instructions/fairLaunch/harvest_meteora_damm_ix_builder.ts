@@ -128,12 +128,10 @@ export const buildHarvestMeteoraDAMMTransactions = async ({
     { pubkey: crankerTokenAccountB, isWritable: true, isSigner: false },
   ]
 
-  console.log("Unclaimed", result.fee.unClaimed.lp.toString());
-
   const createPermissionlessPoolTx = await gfmProgram.methods.meteoraDammHarvest(result.fee.unClaimed.lp).accounts({
     creator: cranker,
     fairLaunchPool: poolPDA,
-    poolStakingNetwork,
+    // poolStakingNetwork,
     networkTokenAccountA,
     networkTokenAccountB,
     mintA: tokenAMint,

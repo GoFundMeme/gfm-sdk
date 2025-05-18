@@ -1,11 +1,11 @@
 import axios from "axios";
-import { CreateBondingCurvePayload, CreateBondingCurveProcessPayload, CreateBondingCurveProcessSuccessResponse, CreateBondingCurveRequestSuccessResponse } from "../../../types";
+import { CreateVBCBondingCurvePayload, CreateVBCBondingCurveProcessPayload, CreateVBCBondingCurveProcessSuccessResponse, CreateVBCBondingCurveRequestSuccessResponse } from "../../../types";
 import { PublicKey, Transaction } from "@solana/web3.js";
 import { BASE_API_URL } from "../..";
 
-export const createBondingCurveRequest = async (payload: CreateBondingCurvePayload) => {
+export const createVBCBondingCurveRequest = async (payload: CreateVBCBondingCurvePayload) => {
     validateCreatePayload(payload)
-    const { data } = await axios.post<CreateBondingCurveRequestSuccessResponse>(`${BASE_API_URL}/pool/bonding-curve/create/request`, payload)
+    const { data } = await axios.post<CreateVBCBondingCurveRequestSuccessResponse>(`${BASE_API_URL}/pool/bonding-curve/vbc/create/request`, payload)
     if (data.success === false) {
         throw new Error(data.error);
     }
@@ -17,8 +17,8 @@ export const createBondingCurveRequest = async (payload: CreateBondingCurvePaylo
     }
 }
 
-export const createBondingCurveProcess = async (payload: CreateBondingCurveProcessPayload) => {
-    const { data } = await axios.post<CreateBondingCurveProcessSuccessResponse>(`${BASE_API_URL}/pool/bonding-curve/create/process`, {
+export const createVBCBondingCurveProcess = async (payload: CreateVBCBondingCurveProcessPayload) => {
+    const { data } = await axios.post<CreateVBCBondingCurveProcessSuccessResponse>(`${BASE_API_URL}/pool/bonding-curve/vbc/create/process`, {
         requestId: payload.requestId,
         rawTransaction: Array.from(payload.signedTransaction.serialize({ requireAllSignatures: true, verifySignatures: true }))
     })
@@ -28,7 +28,7 @@ export const createBondingCurveProcess = async (payload: CreateBondingCurveProce
     return data.data
 }
 
-const validateCreatePayload = ({ token, amountIn, supply }: CreateBondingCurvePayload) => {
+const validateCreatePayload = ({ token, amountIn }: CreateVBCBondingCurvePayload) => {
     if (!token) throw new Error('Token details are missing')
     let { base64, name, symbol, description, website, twitter, discord, telegram } = token
 
@@ -73,14 +73,10 @@ const validateCreatePayload = ({ token, amountIn, supply }: CreateBondingCurvePa
     if (description.length > 500) {
         throw new Error(`Token description too long (Up to 500 characters)`)
     }
-
-    if (supply < 10_000_000 && 10_000_000_000 < supply)
-        throw new Error(`Supply must be between 1,000,000 && 1,000,000,000,000,0000`)
-
     if (amountIn === undefined || typeof amountIn !== 'number') {
         throw new Error(`Missing amount in`)
     }
-    if (amountIn < 0 && amountIn < 70) throw new Error(`Amount in must be between 0 SOL - 70 SOL`)
+    if (amountIn <= 0 && amountIn < 70) throw new Error(`Amount in must be between 0 SOL - 70 SOL`)
 
 
 

@@ -227,7 +227,7 @@ export const createMeteoraDAMMHarvest = async (
     .accounts({
       creator: userPublicKey,
       fairLaunchPool: poolPda,
-      poolStakingNetwork,
+      // poolStakingNetwork,
       networkTokenAccountA,
       networkTokenAccountB,
       mintA: tokenAMint,

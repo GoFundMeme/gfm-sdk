@@ -13,10 +13,12 @@ import {
 } from "./fairLaunchPool";
 import { Raydium } from "@raydium-io/raydium-sdk-v2";
 import { OrcaContext } from "../../utils";
+import { buildVBCBondingCurvePoolActions, buildVBCBondingCurvePoolUtils } from "./meteoraBondingCurvePool";
 
 export enum PoolLaunchType {
   FAIR_LAUNCH = "fairLaunch",
   BONDING_CURVE = "bondingCurve",
+  METEORA_BONDING_CURVE = "meteoraBondingCurve",
 }
 
 export const buildGenericPoolUtils = ({
@@ -46,7 +48,7 @@ export const buildGenericPoolUtils = ({
           pool,
         }),
       };
-    } catch {}
+    } catch { }
     try {
       const pool = await gfmProgram.account.bondingCurvePool.fetch(poolPDA);
       return {
@@ -58,10 +60,22 @@ export const buildGenericPoolUtils = ({
           raydium
         }),
       };
-    } catch {}
-    throw new Error("No pool found");
-  };
-};
+    } catch {
+      try {
+        const pool = await gfmProgram.account.vbcPool.fetch(poolPDA);
+        return {
+          poolType: PoolLaunchType.METEORA_BONDING_CURVE,
+          response: await buildVBCBondingCurvePoolActions({
+            gfmProgram,
+            pool,
+          }),
+        };
+      } catch {
+        throw new Error("No pool found");
+      };
+    };
+  }
+}
 
 export const builtPoolUtils = ({
   gfmProgram,
@@ -84,5 +98,6 @@ export const builtPoolUtils = ({
       raydium: raydium,
       orcaContext,
     }),
+    meteoraBondingCurve: buildVBCBondingCurvePoolUtils({ gfmProgram })
   };
 };

@@ -158,7 +158,7 @@ export const buildHarvestOrcaPresaleTransaction = async ({
       ),
       stakingNetwork,
       stakingNetworkWsolAccount,
-      poolStakingNetwork: getPoolStakingNetwork(gfmProgram.programId, poolPDA),
+      // poolStakingNetwork: getPoolStakingNetwork(gfmProgram.programId, poolPDA),
     })
     .remainingAccounts(remainingAccounts)
     .instruction();

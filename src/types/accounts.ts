@@ -10,5 +10,6 @@ let program: Program<Gofundmeme>;
 export type PoolsUtils = UnwrapPromise<ReturnType<typeof builtPoolUtils>>;
 export type FairLaunchPool = UnwrapPromise<ReturnType<typeof program.account.pool.fetch>>;
 export type BondingCurvePool = UnwrapPromise<ReturnType<typeof program.account.bondingCurvePool.fetch>>;
+export type VBCBondingCurvePool = UnwrapPromise<ReturnType<typeof program.account.vbcPool.fetch>>;
 export type StakingNetworkState = UnwrapPromise<ReturnType<typeof getStakingNetworkState>>;
 export type PoolStakingNetworkNetwork = UnwrapPromise<ReturnType<typeof program.account.gfmPoolStakingNetwork.fetch>>;

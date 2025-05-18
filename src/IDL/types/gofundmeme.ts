@@ -624,9 +624,12 @@ export type Gofundmeme = {
           ]
         },
         {
-          "name": "poolStakingNetwork",
-          "isMut": true,
-          "isSigner": false
+          "name": "mintB",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "The mint account for the GFM token."
+          ]
         }
       ],
       "args": []
@@ -3123,30 +3126,6 @@ export type Gofundmeme = {
           ]
         },
         {
-          "name": "metadata",
-          "isMut": true,
-          "isSigner": false,
-          "docs": [
-            "CHECK"
-          ]
-        },
-        {
-          "name": "tokenAccount",
-          "isMut": true,
-          "isSigner": false,
-          "docs": [
-            "CHECK"
-          ]
-        },
-        {
-          "name": "stakingMetadata",
-          "isMut": true,
-          "isSigner": false,
-          "docs": [
-            "CHECK"
-          ]
-        },
-        {
           "name": "associatedTokenProgram",
           "isMut": false,
           "isSigner": false,
@@ -3160,14 +3139,6 @@ export type Gofundmeme = {
           "isSigner": false,
           "docs": [
             "The token program account."
-          ]
-        },
-        {
-          "name": "metadataProgram",
-          "isMut": false,
-          "isSigner": false,
-          "docs": [
-            "CHECK"
           ]
         },
         {
@@ -5023,15 +4994,6 @@ export type Gofundmeme = {
           "isSigner": false
         },
         {
-          "name": "poolStakingNetwork",
-          "isMut": false,
-          "isSigner": false,
-          "docs": [
-            "The staking network account, derived using seeds.",
-            "CHECK"
-          ]
-        },
-        {
           "name": "networkTokenAccountA",
           "isMut": true,
           "isSigner": false,
@@ -6251,6 +6213,146 @@ export type Gofundmeme = {
           }
         }
       ]
+    },
+    {
+      "name": "meteoraVbcInitPool",
+      "accounts": [
+        {
+          "name": "admin",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "creator",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "tokenAMint",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "tokenBMint",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "vbcProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "vbcPool",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "config",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "poolAuthority",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "baseVault",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "quoteVault",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "tokenQuoteProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "eventAuthority",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "metadataProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        }
+      ],
+      "args": [
+        {
+          "name": "token",
+          "type": {
+            "defined": "VBCTokenData"
+          }
+        }
+      ]
     }
   ],
   "accounts": [
@@ -6423,6 +6525,101 @@ export type Gofundmeme = {
               "Percentage of funders' allocation."
             ],
             "type": "u16"
+          },
+          {
+            "name": "poolActivationTimestamp",
+            "docs": [
+              "Timestamp representing the expiration date of the pool."
+            ],
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "vbcPool",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "bump",
+            "docs": [
+              "PDA bump seed."
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "admin",
+            "docs": [
+              "Administrator of the pool."
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "vbc",
+            "type": "publicKey"
+          },
+          {
+            "name": "crankRewardBps",
+            "docs": [
+              "Reward for cranking operations, measured in basis points (bps)."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "tokenAMint",
+            "docs": [
+              "Mint address of token A."
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "tokenBMint",
+            "docs": [
+              "Mint address of token B."
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "dexPool",
+            "docs": [
+              "Associated pool address."
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "position",
+            "docs": [
+              "The position associated with this pool."
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "poolType",
+            "docs": [
+              "Type of the pool."
+            ],
+            "type": {
+              "defined": "PoolType"
+            }
+          },
+          {
+            "name": "raiseType",
+            "docs": [
+              "Type of raise mechanism used."
+            ],
+            "type": {
+              "defined": "RaiseType"
+            }
+          },
+          {
+            "name": "poolStatus",
+            "docs": [
+              "Current status of the pool."
+            ],
+            "type": {
+              "defined": "PoolStatus"
+            }
           },
           {
             "name": "poolActivationTimestamp",
@@ -7731,6 +7928,26 @@ export type Gofundmeme = {
       }
     },
     {
+      "name": "VBCTokenData",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "uri",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "symbol",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
       "name": "MyError",
       "docs": [
         "A small enum to store either a BondingCurvePool or a Pool."
@@ -7858,6 +8075,9 @@ export type Gofundmeme = {
           },
           {
             "name": "MeteoraCLMM"
+          },
+          {
+            "name": "MeteoraVBC"
           }
         ]
       }
@@ -7881,6 +8101,9 @@ export type Gofundmeme = {
           },
           {
             "name": "AlphaVault"
+          },
+          {
+            "name": "MeteoraVBC"
           }
         ]
       }
@@ -9131,9 +9354,12 @@ export const IDL: Gofundmeme = {
           ]
         },
         {
-          "name": "poolStakingNetwork",
-          "isMut": true,
-          "isSigner": false
+          "name": "mintB",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "The mint account for the GFM token."
+          ]
         }
       ],
       "args": []
@@ -11630,30 +11856,6 @@ export const IDL: Gofundmeme = {
           ]
         },
         {
-          "name": "metadata",
-          "isMut": true,
-          "isSigner": false,
-          "docs": [
-            "CHECK"
-          ]
-        },
-        {
-          "name": "tokenAccount",
-          "isMut": true,
-          "isSigner": false,
-          "docs": [
-            "CHECK"
-          ]
-        },
-        {
-          "name": "stakingMetadata",
-          "isMut": true,
-          "isSigner": false,
-          "docs": [
-            "CHECK"
-          ]
-        },
-        {
           "name": "associatedTokenProgram",
           "isMut": false,
           "isSigner": false,
@@ -11667,14 +11869,6 @@ export const IDL: Gofundmeme = {
           "isSigner": false,
           "docs": [
             "The token program account."
-          ]
-        },
-        {
-          "name": "metadataProgram",
-          "isMut": false,
-          "isSigner": false,
-          "docs": [
-            "CHECK"
           ]
         },
         {
@@ -13530,15 +13724,6 @@ export const IDL: Gofundmeme = {
           "isSigner": false
         },
         {
-          "name": "poolStakingNetwork",
-          "isMut": false,
-          "isSigner": false,
-          "docs": [
-            "The staking network account, derived using seeds.",
-            "CHECK"
-          ]
-        },
-        {
           "name": "networkTokenAccountA",
           "isMut": true,
           "isSigner": false,
@@ -14758,6 +14943,146 @@ export const IDL: Gofundmeme = {
           }
         }
       ]
+    },
+    {
+      "name": "meteoraVbcInitPool",
+      "accounts": [
+        {
+          "name": "admin",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "creator",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "pool",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "tokenAMint",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "tokenBMint",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "vbcProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "vbcPool",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "config",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "poolAuthority",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "baseVault",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "quoteVault",
+          "isMut": true,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "tokenQuoteProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "eventAuthority",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "metadataProgram",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false,
+          "docs": [
+            "CHECK"
+          ]
+        }
+      ],
+      "args": [
+        {
+          "name": "token",
+          "type": {
+            "defined": "VBCTokenData"
+          }
+        }
+      ]
     }
   ],
   "accounts": [
@@ -14930,6 +15255,101 @@ export const IDL: Gofundmeme = {
               "Percentage of funders' allocation."
             ],
             "type": "u16"
+          },
+          {
+            "name": "poolActivationTimestamp",
+            "docs": [
+              "Timestamp representing the expiration date of the pool."
+            ],
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "vbcPool",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "bump",
+            "docs": [
+              "PDA bump seed."
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "admin",
+            "docs": [
+              "Administrator of the pool."
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "vbc",
+            "type": "publicKey"
+          },
+          {
+            "name": "crankRewardBps",
+            "docs": [
+              "Reward for cranking operations, measured in basis points (bps)."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "tokenAMint",
+            "docs": [
+              "Mint address of token A."
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "tokenBMint",
+            "docs": [
+              "Mint address of token B."
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "dexPool",
+            "docs": [
+              "Associated pool address."
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "position",
+            "docs": [
+              "The position associated with this pool."
+            ],
+            "type": "publicKey"
+          },
+          {
+            "name": "poolType",
+            "docs": [
+              "Type of the pool."
+            ],
+            "type": {
+              "defined": "PoolType"
+            }
+          },
+          {
+            "name": "raiseType",
+            "docs": [
+              "Type of raise mechanism used."
+            ],
+            "type": {
+              "defined": "RaiseType"
+            }
+          },
+          {
+            "name": "poolStatus",
+            "docs": [
+              "Current status of the pool."
+            ],
+            "type": {
+              "defined": "PoolStatus"
+            }
           },
           {
             "name": "poolActivationTimestamp",
@@ -16238,6 +16658,26 @@ export const IDL: Gofundmeme = {
       }
     },
     {
+      "name": "VBCTokenData",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "uri",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "symbol",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
       "name": "MyError",
       "docs": [
         "A small enum to store either a BondingCurvePool or a Pool."
@@ -16365,6 +16805,9 @@ export const IDL: Gofundmeme = {
           },
           {
             "name": "MeteoraCLMM"
+          },
+          {
+            "name": "MeteoraVBC"
           }
         ]
       }
@@ -16388,6 +16831,9 @@ export const IDL: Gofundmeme = {
           },
           {
             "name": "AlphaVault"
+          },
+          {
+            "name": "MeteoraVBC"
           }
         ]
       }
