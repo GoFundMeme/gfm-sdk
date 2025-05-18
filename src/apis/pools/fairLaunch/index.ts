@@ -27,7 +27,7 @@ export const buildFailLaunchApiUtils = async (poolUtils: PoolsUtils, gfmProgram:
                 if (creator.publicKey.toString() !== payload.creatorWalletAddress.toString()) {
                     throw new Error(`Incorrect signer (${creator.publicKey.toString()}). Should be ${payload.creatorWalletAddress.toString()} `);
                 }
-                transaction.sign(creator)
+                transaction.partialSign(creator)
                 return await processCreatePool({
                     requestId,
                     signedTransaction: transaction
